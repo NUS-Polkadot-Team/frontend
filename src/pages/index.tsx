@@ -1,13 +1,16 @@
-import { useMemo } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
+import { SVGProps, useMemo } from 'react'
 import { parse } from 'rss-to-json'
 
-import { useAudioPlayer } from '@/components/AudioProvider'
 import { Container } from '@/components/Container'
 import { FormattedDate } from '@/components/FormattedDate'
 
-function PlayPauseIcon({ playing, ...props }) {
+interface PlayPauseIconProps extends SVGProps<SVGSVGElement> {
+  playing: boolean
+}
+
+function PlayPauseIcon({ playing, ...props }: PlayPauseIconProps) {
   return (
     <svg aria-hidden="true" viewBox="0 0 10 10" fill="none" {...props}>
       {playing ? (
@@ -23,7 +26,23 @@ function PlayPauseIcon({ playing, ...props }) {
   )
 }
 
-function EpisodeEntry({ episode }) {
+interface EpisodeEntryProps {
+  episode: Episode
+}
+
+export interface Episode {
+  published: string
+  title: string
+  audio: {
+    src: string
+    type: string
+  }
+  id: string
+  description: string
+  content: string
+}
+
+function EpisodeEntry({ episode }: EpisodeEntryProps) {
   let date = new Date(episode.published)
 
   let audioPlayerData = useMemo(
@@ -37,7 +56,6 @@ function EpisodeEntry({ episode }) {
     }),
     [episode]
   )
-  let player = useAudioPlayer(audioPlayerData)
 
   return (
     <article
@@ -62,14 +80,12 @@ function EpisodeEntry({ episode }) {
           <div className="mt-4 flex items-center gap-4">
             <button
               type="button"
-              onClick={() => player.toggle()}
+              onClick={() => {}}
               className="flex items-center text-sm font-bold leading-6 text-pink-500 hover:text-pink-700 active:text-pink-900"
-              aria-label={`${player.playing ? 'Pause' : 'Play'} episode ${
-                episode.title
-              }`}
+              aria-label={`Play episode ${episode.title}`}
             >
               <PlayPauseIcon
-                playing={player.playing}
+                playing={true}
                 className="h-2.5 w-2.5 fill-current"
               />
               <span className="ml-3" aria-hidden="true">
@@ -96,7 +112,11 @@ function EpisodeEntry({ episode }) {
   )
 }
 
-export default function Home({ episodes }) {
+interface HomeProps {
+  episodes: Episode[]
+}
+
+export default function Home({ episodes }: HomeProps) {
   return (
     <>
       <Head>
@@ -136,7 +156,7 @@ export async function getStaticProps() {
           title: `${id}: ${title}`,
           published,
           description,
-          audio: enclosures.map((enclosure) => ({
+          audio: enclosures.map((enclosure: { url: string; type: string }) => ({
             src: enclosure.url,
             type: enclosure.type,
           }))[0],

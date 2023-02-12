@@ -1,12 +1,19 @@
-import { Fragment, useId, useState } from 'react'
+import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
-import clsx from 'clsx'
+import {
+  DetailedHTMLProps,
+  Fragment,
+  HTMLAttributes,
+  ReactNode,
+  SVGProps,
+  useId,
+  useState,
+} from 'react'
 
-import { AudioPlayer } from '@/components/player/AudioPlayer'
 import posterImage from '@/images/poster.png'
 
-function randomBetween(min, max, seed = 1) {
+function randomBetween(min: number, max: number, seed = 1) {
   return () => {
     let rand = Math.sin(seed++) * 10000
     rand = rand - Math.floor(rand)
@@ -14,7 +21,7 @@ function randomBetween(min, max, seed = 1) {
   }
 }
 
-function Waveform(props) {
+function Waveform(props: SVGProps<SVGSVGElement>) {
   let id = useId()
   let bars = {
     total: 100,
@@ -72,7 +79,11 @@ function Waveform(props) {
   )
 }
 
-function TinyWaveFormIcon({ colors = [], ...props }) {
+interface TinyWaveFormIconProps extends SVGProps<SVGSVGElement> {
+  colors: string[]
+}
+
+function TinyWaveFormIcon({ colors = [], ...props }: TinyWaveFormIconProps) {
   return (
     <svg aria-hidden="true" viewBox="0 0 10 10" {...props}>
       <path
@@ -87,7 +98,7 @@ function TinyWaveFormIcon({ colors = [], ...props }) {
   )
 }
 
-function SpotifyIcon(props) {
+function SpotifyIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg aria-hidden="true" viewBox="0 0 32 32" {...props}>
       <path d="M15.8 3a12.8 12.8 0 1 0 0 25.6 12.8 12.8 0 0 0 0-25.6Zm5.87 18.461a.8.8 0 0 1-1.097.266c-3.006-1.837-6.787-2.252-11.244-1.234a.796.796 0 1 1-.355-1.555c4.875-1.115 9.058-.635 12.432 1.427a.8.8 0 0 1 .265 1.096Zm1.565-3.485a.999.999 0 0 1-1.371.33c-3.44-2.116-8.685-2.728-12.755-1.493a1 1 0 0 1-.58-1.91c4.65-1.41 10.428-.726 14.378 1.7a1 1 0 0 1 .33 1.375l-.002-.002Zm.137-3.629c-4.127-2.45-10.933-2.675-14.871-1.478a1.196 1.196 0 1 1-.695-2.291c4.52-1.374 12.037-1.107 16.785 1.711a1.197 1.197 0 1 1-1.221 2.06" />
@@ -95,7 +106,7 @@ function SpotifyIcon(props) {
   )
 }
 
-function ApplePodcastIcon(props) {
+function ApplePodcastIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg aria-hidden="true" viewBox="0 0 32 32" {...props}>
       <path
@@ -107,7 +118,7 @@ function ApplePodcastIcon(props) {
   )
 }
 
-function OvercastIcon(props) {
+function OvercastIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg aria-hidden="true" viewBox="0 0 32 32" {...props}>
       <path d="M16 28.8A12.77 12.77 0 0 1 3.2 16 12.77 12.77 0 0 1 16 3.2 12.77 12.77 0 0 1 28.8 16 12.77 12.77 0 0 1 16 28.8Zm0-5.067.96-.96-.96-3.68-.96 3.68.96.96Zm-1.226-.054-.48 1.814 1.12-1.12-.64-.694Zm2.453 0-.64.64 1.12 1.12-.48-1.76Zm.907 3.307L16 24.853l-2.133 2.133c.693.107 1.387.213 2.133.213.747 0 1.44-.053 2.134-.213ZM16 4.799C9.814 4.8 4.8 9.813 4.8 16c0 4.907 3.147 9.067 7.52 10.56l2.4-8.906c-.533-.374-.853-1.014-.853-1.707A2.14 2.14 0 0 1 16 13.813a2.14 2.14 0 0 1 2.134 2.133c0 .693-.32 1.28-.854 1.707l2.4 8.906A11.145 11.145 0 0 0 27.2 16c0-6.186-5.013-11.2-11.2-11.2Zm7.307 16.747c-.267.32-.747.427-1.12.16-.373-.267-.427-.747-.16-1.067 0 0 1.44-1.92 1.44-4.64 0-2.72-1.44-4.64-1.44-4.64-.267-.32-.213-.8.16-1.066.373-.267.853-.16 1.12.16.107.106 1.76 2.293 1.76 5.546 0 3.254-1.653 5.44-1.76 5.547Zm-3.893-2.08c-.32-.32-.267-.907.053-1.227 0 0 .8-.853.8-2.24 0-1.386-.8-2.186-.8-2.24-.32-.32-.32-.853-.053-1.226.32-.374.8-.374 1.12-.054.053.054 1.333 1.387 1.333 3.52 0 2.134-1.28 3.467-1.333 3.52-.32.32-.8.267-1.12-.053Zm-6.827 0c-.32.32-.8.373-1.12.053-.053-.106-1.333-1.386-1.333-3.52 0-2.133 1.28-3.413 1.333-3.52.32-.32.853-.32 1.12.054.32.32.267.906-.053 1.226 0 .054-.8.854-.8 2.24 0 1.387.8 2.24.8 2.24.32.32.373.854.053 1.227Zm-2.773 2.24c-.374.267-.854.16-1.12-.16-.107-.107-1.76-2.293-1.76-5.547 0-3.253 1.653-5.44 1.76-5.546.266-.32.746-.427 1.12-.16.373.266.426.746.16 1.066 0 0-1.44 1.92-1.44 4.64 0 2.72 1.44 4.64 1.44 4.64.266.32.16.8-.16 1.067Z" />
@@ -115,7 +126,7 @@ function OvercastIcon(props) {
   )
 }
 
-function RSSIcon(props) {
+function RSSIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg aria-hidden="true" viewBox="0 0 32 32" {...props}>
       <path
@@ -127,7 +138,7 @@ function RSSIcon(props) {
   )
 }
 
-function PersonIcon(props) {
+function PersonIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg aria-hidden="true" viewBox="0 0 11 12" {...props}>
       <path d="M5.019 5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Zm3.29 7c1.175 0 2.12-1.046 1.567-2.083A5.5 5.5 0 0 0 5.019 7 5.5 5.5 0 0 0 .162 9.917C-.39 10.954.554 12 1.73 12h6.578Z" />
@@ -135,7 +146,9 @@ function PersonIcon(props) {
   )
 }
 
-function AboutSection(props) {
+function AboutSection(
+  props: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
+) {
   let [isExpanded, setIsExpanded] = useState(false)
 
   return (
@@ -172,7 +185,7 @@ function AboutSection(props) {
   )
 }
 
-export function Layout({ children }) {
+export function Layout({ children }: { children?: ReactNode }) {
   let hosts = ['Eric Gordon', 'Wes Mantooth']
 
   return (
@@ -231,12 +244,14 @@ export function Layout({ children }) {
               role="list"
               className="mt-4 flex justify-center gap-10 text-base font-medium leading-7 text-slate-700 sm:gap-8 lg:flex-col lg:gap-4"
             >
-              {[
-                ['Spotify', SpotifyIcon],
-                ['Apple Podcast', ApplePodcastIcon],
-                ['Overcast', OvercastIcon],
-                ['RSS Feed', RSSIcon],
-              ].map(([label, Icon]) => (
+              {(
+                [
+                  ['Spotify', SpotifyIcon],
+                  ['Apple Podcast', ApplePodcastIcon],
+                  ['Overcast', OvercastIcon],
+                  ['RSS Feed', RSSIcon],
+                ] as [string, (props: SVGProps<SVGSVGElement>) => JSX.Element][]
+              ).map(([label, Icon]) => (
                 <li key={label} className="flex">
                   <Link
                     href="/"
@@ -278,7 +293,7 @@ export function Layout({ children }) {
         </div>
       </footer>
       <div className="fixed inset-x-0 bottom-0 z-10 lg:left-112 xl:left-120">
-        <AudioPlayer />
+        Audio Player
       </div>
     </>
   )
