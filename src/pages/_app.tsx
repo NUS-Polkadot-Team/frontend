@@ -4,10 +4,20 @@ import type { AppProps } from 'next/app'
 import '@/styles/tailwind.css'
 import 'focus-visible'
 
-export default function App({ Component, pageProps }: AppProps) {
+const layoutRoutes = ['/bounty']
+
+export default function App({ Component, pageProps, router }: AppProps) {
+  const showLayout = layoutRoutes.includes(router.route)
+
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <>
+      {showLayout ? (
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      ) : (
+        <Component {...pageProps} />
+      )}
+    </>
   )
 }

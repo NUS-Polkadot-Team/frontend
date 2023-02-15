@@ -2,7 +2,7 @@ import { Head, Html, Main, NextScript } from 'next/document'
 
 export default function Document() {
   return (
-    <Html className="bg-white antialiased" lang="en">
+    <Html className="h-full scroll-smooth bg-white antialiased" lang="en">
       <Head>
         <link
           rel="preconnect"

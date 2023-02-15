@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { useMemo } from 'react'
 import { parse } from 'rss-to-json'
 
-import { Container } from '@/components/Container'
+import { Container } from '@/components/LayoutContainer'
 import { FormattedDate } from '@/components/FormattedDate'
 import type { GetStaticProps } from 'next'
 import type { Episode } from '.'
