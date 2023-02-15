@@ -12,6 +12,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.10",
     "@polkadot/api": "^9.14.1",
+    "@polkadot/api-contract": "^9.14.1",
     "@polkadot/extension-dapp": "^0.44.8",
     "@polkadot/ui-keyring": "^2.11.2",
     "@tailwindcss/line-clamp": "^0.4.2",
