@@ -76,26 +76,23 @@ function BountyEntry({ bounty }: BountyEntryProps) {
             {bounty.description}
           </p>
           <div className="mt-4 flex items-center gap-4">
-            {/* <button
-              type="button"
-              onClick={() => {}}
+            <Link
+              href={`/bounties/${bounty.address}`}
               className="flex items-center text-sm font-bold leading-6 text-pink-500 hover:text-pink-700 active:text-pink-900"
-              aria-label={`Play episode ${bounty.title}`}
             >
               <span className="ml-3" aria-hidden="true">
-                Like
+                {bounty.prize} eth
               </span>
-            </button>
+            </Link>
             <span
               aria-hidden="true"
               className="text-sm font-bold text-slate-400"
             >
               /
-            </span> */}
+            </span>
             <Link
-              href={`/${bounty.address}`}
+              href={`/bounties/${bounty.address}`}
               className="flex items-center text-sm font-bold leading-6 text-pink-500 hover:text-pink-700 active:text-pink-900"
-              aria-label={`Show notes for episode ${bounty.title}`}
             >
               View
             </Link>
@@ -114,13 +111,10 @@ export default function Home({ bounty }: HomeProps) {
   return (
     <>
       <Head>
-        <title>
-          Their Side - Conversations with the most tragically misunderstood
-          people of our time
-        </title>
+        <title>ArtFi - Bounties</title>
         <meta
           name="description"
-          content="Conversations with the most tragically misunderstood people of our time."
+          content="Building communities of artists, Empowering the creator economy"
         />
       </Head>
       <div className="pt-16 pb-12 sm:pb-4 lg:pt-12">

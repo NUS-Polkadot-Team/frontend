@@ -1,9 +1,8 @@
-import { useEffect, useId, useState } from 'react'
-import Image from 'next/image'
 import { Tab } from '@headlessui/react'
 import clsx from 'clsx'
+import Image from 'next/image'
+import { useEffect, useId, useState } from 'react'
 
-import { Container } from '@/components/Container'
 import { DiamondIcon } from '@/components/DiamondIcon'
 import andrewGreeneImage from '@/images/avatars/andrew-greene.jpg'
 import cathleneBurrageImage from '@/images/avatars/cathlene-burrage.jpg'

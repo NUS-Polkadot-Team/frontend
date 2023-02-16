@@ -199,13 +199,10 @@ function AboutSection(
           !isExpanded && 'lg:line-clamp-4'
         )}
       >
-        In this show, Eric and Wes dig deep to get to the facts with guests who
-        have been labeled villains by a society quick to judge, without actually
-        getting the full story. Tune in every Thursday to get to the truth with
-        another misunderstood outcast as they share the missing context in their
-        tragic tale.
+        Social dApp for creators to discover and connect with artists to
+        complete the artwork through bounties.
       </p>
-      {!isExpanded && (
+      {/* {!isExpanded && (
         <button
           type="button"
           className="mt-2 hidden text-sm font-bold leading-6 text-pink-500 hover:text-pink-700 active:text-pink-900 lg:inline-block"
@@ -213,7 +210,7 @@ function AboutSection(
         >
           Show more
         </button>
-      )}
+      )} */}
     </section>
   )
 }
@@ -259,8 +256,7 @@ export function Layout({ children }: { children?: ReactNode }) {
           <div className="mt-10 text-center lg:mt-12 lg:text-left">
             <p className="text-xl font-bold text-slate-900">Welcome</p>
             <p className="mt-3 text-lg font-medium leading-8 text-slate-700">
-              Conversations with the most tragically misunderstood people of our
-              time.
+              Empowering the creator economy - artists and NFT art scene
             </p>
           </div>
           <div className="mt-10 space-y-6">
@@ -286,11 +282,18 @@ export function Layout({ children }: { children?: ReactNode }) {
               Artists
             </Button>
             <Button
-              variant={route === '/profile' ? 'solid' : 'outline'}
-              href="/profile"
+              variant={route === '/create' ? 'solid' : 'outline'}
+              href="/create"
               className="h-12 w-full"
             >
-              Profile
+              Create Bounty
+            </Button>
+            <Button
+              variant={route === '/submit' ? 'solid' : 'outline'}
+              href="/submit"
+              className="h-12 w-full"
+            >
+              Create Submission
             </Button>
           </div>
           <AboutSection className="mt-12 hidden lg:block" />
