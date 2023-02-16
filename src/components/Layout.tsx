@@ -12,7 +12,10 @@ import {
 } from 'react'
 
 import posterImage from '@/images/poster.png'
-import { Header } from './Header';
+import { Header } from './Header'
+import { Button } from './Button'
+import { NavLink } from './NavLink'
+import { useRouter } from 'next/router'
 
 function randomBetween(min: number, max: number, seed = 1) {
   return () => {
@@ -99,6 +102,7 @@ function TinyWaveFormIcon({ colors = [], ...props }: TinyWaveFormIconProps) {
   )
 }
 
+// spotify icon
 function SpotifyIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg aria-hidden="true" viewBox="0 0 32 32" {...props}>
@@ -107,6 +111,34 @@ function SpotifyIcon(props: SVGProps<SVGSVGElement>) {
   )
 }
 
+// twitter icon
+function TwitterIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 32 32" {...props}>
+      <path d="M31.2 6.4c-1.152.512-2.4.864-3.712 1.024 1.344-.816 2.368-2.08 2.848-3.552-1.264 0.752-2.656 1.296-4.128 1.584C24.8 4.8 23.2 4 21.36 4c-3.456 0-6.24 2.784-6.24 6.24 0 .496.056 0.976.16 1.44-5.2-.264-9.84-2.784-12.96-6.624a6.8 6.8 0 0 0-.88 3.168c0 2.176 1.104 4.08 2.784 5.184-1.04-.032-2.016-.32-2.88-.8v.08c0 3.024 2.144 5.52 4.96 6.096-.544.144-1.12.224-1.712.224-.416 0-.816-.04-1.2-.112.816 2.48 3.2 4.272 6.016 4.32-2.144 1.68-4.8 2.688-7.68 2.688-.496 0-.976-.032-1.44-.08 2.72 1.76 5.92 2.784 9.36 2.784 11.28 0 17.52-9.36 17.52-17.52 0-.272 0-.544-.016-.8 1.2-.88 2.24-1.984 3.104-3.2Z" />
+    </svg>
+  )
+}
+
+// instagram icon
+function InstagramIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 32 32" {...props}>
+      <path d="M14.829 6.302c-.738-.034-.96-.04-2.829-.04s-2.09.007-2.828.04c-1.899.087-2.783.986-2.87 2.87-.033.738-.041.959-.041 2.828s.008 2.09.041 2.829c.087 1.879.967 2.783 2.87 2.87.737.033.959.041 2.828.041 1.87 0 2.091-.007 2.829-.041 1.899-.086 2.782-.988 2.87-2.87.033-.738.04-.96.04-2.829s-.007-2.09-.04-2.828c-.088-1.883-.973-2.783-2.87-2.87zm-2.829 9.293c-1.985 0-3.595-1.609-3.595-3.595 0-1.985 1.61-3.594 3.595-3.594s3.595 1.609 3.595 3.594c0 1.985-1.61 3.595-3.595 3.595zm3.737-6.491c-.464 0-.84-.376-.84-.84 0-.464.376-.84.84-.84.464 0 .84.376.84.84 0 .463-.376.84-.84.84zm-1.404 2.896c0 1.289-1.045 2.333-2.333 2.333s-2.333-1.044-2.333-2.333c0-1.289 1.045-2.333 2.333-2.333s2.333 1.044 2.333 2.333zm-2.333-12c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.958 14.886c-.115 2.545-1.532 3.955-4.071 4.072-.747.034-.986.042-2.887.042s-2.139-.008-2.886-.042c-2.544-.117-3.955-1.529-4.072-4.072-.034-.746-.042-.985-.042-2.886 0-1.901.008-2.139.042-2.886.117-2.544 1.529-3.955 4.072-4.071.747-.035.985-.043 2.886-.043s2.14.008 2.887.043c2.545.117 3.957 1.532 4.071 4.071.034.747.042.985.042 2.886 0 1.901-.008 2.14-.042 2.886z" />
+    </svg>
+  )
+}
+
+// github icon
+function GitHubIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 32 32" {...props}>
+      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+    </svg>
+  )
+}
+
+// apple podcast icon
 function ApplePodcastIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg aria-hidden="true" viewBox="0 0 32 32" {...props}>
@@ -187,7 +219,9 @@ function AboutSection(
 }
 
 export function Layout({ children }: { children?: ReactNode }) {
-  // let hosts = ['Eric Gordon', 'Wes Mantooth']
+  // get me the route of the current page
+  const router = useRouter()
+  const route = router.route
 
   return (
     <>
@@ -208,8 +242,8 @@ export function Layout({ children }: { children?: ReactNode }) {
           </span>
         </div> */}
         <div className="relative z-10 mx-auto px-4 pb-4 pt-10 sm:px-6 md:max-w-2xl md:px-4 lg:min-h-full lg:flex-auto lg:border-x lg:border-slate-200 lg:py-12 lg:px-8 xl:px-12">
-          <Link
-            href="/"
+          {/* <Link
+            href="/bounty"
             className="relative mx-auto block w-48 overflow-hidden rounded-lg bg-slate-200 shadow-xl shadow-slate-200 sm:w-64 sm:rounded-xl lg:w-auto lg:rounded-2xl"
             aria-label="Homepage"
           >
@@ -221,15 +255,43 @@ export function Layout({ children }: { children?: ReactNode }) {
               priority
             />
             <div className="absolute inset-0 rounded-lg ring-1 ring-inset ring-black/10 sm:rounded-xl lg:rounded-2xl" />
-          </Link>
+          </Link> */}
           <div className="mt-10 text-center lg:mt-12 lg:text-left">
-            <p className="text-xl font-bold text-slate-900">
-              <Link href="/">Their Side</Link>
-            </p>
+            <p className="text-xl font-bold text-slate-900">Welcome</p>
             <p className="mt-3 text-lg font-medium leading-8 text-slate-700">
               Conversations with the most tragically misunderstood people of our
               time.
             </p>
+          </div>
+          <div className="mt-10 space-y-6">
+            <Button
+              variant={route === '/' ? 'solid' : 'outline'}
+              href="/"
+              className="h-12 w-full"
+            >
+              Home
+            </Button>
+            <Button
+              variant={route === '/bounties' ? 'solid' : 'outline'}
+              href="/bounties"
+              className="h-12 w-full"
+            >
+              Bounties
+            </Button>
+            <Button
+              variant={route === '/artists' ? 'solid' : 'outline'}
+              href="/artists"
+              className="h-12 w-full"
+            >
+              Artists
+            </Button>
+            <Button
+              variant={route === '/profile' ? 'solid' : 'outline'}
+              href="/profile"
+              className="h-12 w-full"
+            >
+              Profile
+            </Button>
           </div>
           <AboutSection className="mt-12 hidden lg:block" />
           <section className="mt-10 lg:mt-12">
@@ -238,7 +300,7 @@ export function Layout({ children }: { children?: ReactNode }) {
                 colors={['fill-indigo-300', 'fill-blue-300']}
                 className="h-2.5 w-2.5"
               />
-              <span className="ml-2.5">Listen</span>
+              <span className="ml-2.5">Connect with us!</span>
             </h2>
             <div className="h-px bg-gradient-to-r from-slate-200/0 via-slate-200 to-slate-200/0 lg:hidden" />
             <ul
@@ -247,10 +309,13 @@ export function Layout({ children }: { children?: ReactNode }) {
             >
               {(
                 [
-                  ['Spotify', SpotifyIcon],
-                  ['Apple Podcast', ApplePodcastIcon],
-                  ['Overcast', OvercastIcon],
-                  ['RSS Feed', RSSIcon],
+                  // ['Spotify', SpotifyIcon],
+                  // ['Apple Podcast', ApplePodcastIcon],
+                  // ['Overcast', OvercastIcon],
+                  // ['RSS Feed', RSSIcon],
+                  ['Twitter', TwitterIcon],
+                  ['Instagram', InstagramIcon],
+                  ['GitHub', GitHubIcon],
                 ] as [string, (props: SVGProps<SVGSVGElement>) => JSX.Element][]
               ).map(([label, Icon]) => (
                 <li key={label} className="flex">
@@ -275,10 +340,6 @@ export function Layout({ children }: { children?: ReactNode }) {
       <footer className="border-t border-slate-200 bg-slate-50 py-10 pb-40 sm:py-16 sm:pb-32 lg:hidden">
         <div className="mx-auto px-4 sm:px-6 md:max-w-2xl md:px-4">
           <AboutSection />
-          <h2 className="mt-8 flex items-center font-mono text-sm font-medium leading-7 text-slate-900">
-            <PersonIcon className="h-3 w-auto fill-slate-300" />
-            <span className="ml-2.5">Hosted by</span>
-          </h2>
           {/* <div className="mt-2 flex gap-6 text-sm font-bold leading-7 text-slate-900">
             {hosts.map((host, hostIndex) => (
               <Fragment key={host}>

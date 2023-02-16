@@ -31,11 +31,11 @@ export function Button({
   href,
   ...props
 }: {
-  variant?: keyof typeof baseStyles
-  color?: keyof typeof variantStyles['solid']
+  variant?: 'solid' | 'outline'
+  color?: 'slate' | 'white'
   className?: string
   href?: string
-} & React.ComponentProps<'button' | 'a'>) {
+}): JSX.Element {
   className = clsx(
     baseStyles[variant],
     variantStyles[variant][color],
