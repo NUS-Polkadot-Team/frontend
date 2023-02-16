@@ -14,6 +14,7 @@ export function FormattedDate({
 }) {
   return (
     <time dateTime={date.toISOString()} {...props}>
+      <span>Posted on: </span>
       {dateFormatter.format(date)}
     </time>
   )

@@ -1,12 +1,13 @@
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import { Hero } from '@/components/Hero';
+import { PrimaryFeatures } from '@/components/PrimaryFeatures';
+import abi from '@/context/metadata';
 import { ApiPromise, WsProvider } from '@polkadot/api';
 import { ContractPromise } from '@polkadot/api-contract';
 import type { InjectedAccountWithMeta } from '@polkadot/extension-inject/types';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
-import abi from '@/context/metadata';
 
 export default function Home() {
   const [blockchainUrl, setBlockchainUrl] = useState('ws://127.0.0.1:9944');
@@ -93,6 +94,7 @@ export default function Home() {
       <Header />
       <main className="w-full max-w-none px-0">
         <Hero />
+        <PrimaryFeatures />
       </main>
       <Footer />
     </>
