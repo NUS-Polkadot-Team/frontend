@@ -20,23 +20,27 @@ const variantStyles = {
   outline: {
     slate:
       'ring-slate-200 text-slate-700 hover:text-slate-900 hover:ring-slate-300 active:bg-slate-100 active:text-slate-600 focus-visible:outline-blue-600 focus-visible:ring-slate-300',
+    blue: '',
     white:
       'ring-slate-700 text-white hover:ring-slate-500 active:ring-slate-700 active:text-slate-400 focus-visible:outline-white',
   },
 };
 
+type Variant = keyof typeof variantStyles;
+type Colour = keyof typeof variantStyles[Variant];
+
 type ButtonProps = CustomButtonProps | CustomLinkProps;
 
 type CustomLinkProps = {
-  variant?: 'solid' | 'outline';
-  color?: 'slate' | 'white';
+  variant?: Variant;
+  color?: Colour;
   className?: string;
   href: string;
 } & LinkProps;
 
 type CustomButtonProps = {
-  variant?: 'solid' | 'outline';
-  color?: 'slate' | 'white';
+  variant?: Variant;
+  color?: Colour;
   className?: string;
 } & DetailedHTMLProps<
   ButtonHTMLAttributes<HTMLButtonElement>,

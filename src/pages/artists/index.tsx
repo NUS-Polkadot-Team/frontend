@@ -1,19 +1,19 @@
-import Head from 'next/head'
+import Head from 'next/head';
 
-import { Container } from '@/components/LayoutContainer'
+import { Container } from '@/components/Layout/LayoutContainer';
 
-import { ArtistList } from '@/components/ArtistList'
-import type { StaticImageData } from 'next/image'
+import { ArtistList } from '@/components/ArtistsPage/ArtistList';
+import type { StaticImageData } from 'next/image';
 interface ArtistEntryProps {
-  artist: Artist
+  artist: Artist;
 }
 
 export interface Artist {
-  username: string // title of the artist
-  description: string // description of the artist
-  bountiesCompleted: string // number of bounties completed by the artist
-  artworks: string[] // array of bounty addresses
-  image: StaticImageData
+  username: string; // title of the artist
+  description: string; // description of the artist
+  bountiesCompleted: string; // number of bounties completed by the artist
+  artworks: string[]; // array of bounty addresses
+  image: StaticImageData;
 }
 
 export default function Home() {
@@ -35,5 +35,5 @@ export default function Home() {
         <ArtistList />
       </div>
     </>
-  )
+  );
 }

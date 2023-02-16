@@ -1,7 +1,7 @@
-import Head from 'next/head'
+import Head from 'next/head';
 
-import { Container } from '@/components/LayoutContainer'
-import { useRouter } from 'next/router'
+import { Container } from '@/components/Layout/LayoutContainer';
+import { useRouter } from 'next/router';
 
 const bounties = [
   {
@@ -17,12 +17,12 @@ const bounties = [
     designsRequired: '1',
     selectedDesign: '',
   },
-]
+];
 
 export default function BountyPage() {
   //get the bounties address from the router
-  const router = useRouter()
-  const { id } = router.query
+  const router = useRouter();
+  const { id } = router.query;
 
   return (
     <>
@@ -42,5 +42,5 @@ export default function BountyPage() {
         </div>
       </div>
     </>
-  )
+  );
 }

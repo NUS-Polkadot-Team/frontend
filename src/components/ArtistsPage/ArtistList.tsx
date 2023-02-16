@@ -1,27 +1,27 @@
-import { Tab } from '@headlessui/react'
-import clsx from 'clsx'
-import Image from 'next/image'
-import { useEffect, useId, useState } from 'react'
+import { Tab } from '@headlessui/react';
+import clsx from 'clsx';
+import Image from 'next/image';
+import { useEffect, useId, useState } from 'react';
 
-import { DiamondIcon } from '@/components/DiamondIcon'
-import andrewGreeneImage from '@/images/avatars/andrew-greene.jpg'
-import cathleneBurrageImage from '@/images/avatars/cathlene-burrage.jpg'
-import damarisKimuraImage from '@/images/avatars/damaris-kimura.jpg'
-import dianneGuilianelliImage from '@/images/avatars/dianne-guilianelli.jpg'
-import erhartCockrinImage from '@/images/avatars/erhart-cockrin.jpg'
-import giordanoSagucioImage from '@/images/avatars/giordano-sagucio.jpg'
-import gordonSandersonImage from '@/images/avatars/gordon-sanderson.jpg'
-import heatherTerryImage from '@/images/avatars/heather-terry.jpg'
-import ibrahimFraschImage from '@/images/avatars/ibrahim-frasch.jpg'
-import jaquelinIschImage from '@/images/avatars/jaquelin-isch.jpg'
-import kimberlyParsonsImage from '@/images/avatars/kimberly-parsons.jpg'
-import parkerJohnsonImage from '@/images/avatars/parker-johnson.jpg'
-import piersWilkinsImage from '@/images/avatars/piers-wilkins.jpg'
-import richardAstley from '@/images/avatars/richard-astley.jpg'
-import rinaldoBeynonImage from '@/images/avatars/rinaldo-beynon.jpg'
-import ronniCantadoreImage from '@/images/avatars/ronni-cantadore.jpg'
-import stevenMchailImage from '@/images/avatars/steven-mchail.jpg'
-import waylonHydenImage from '@/images/avatars/waylon-hyden.jpg'
+import { DiamondIcon } from '@/components/Icons/DiamondIcon';
+import andrewGreeneImage from '@/images/avatars/andrew-greene.jpg';
+import cathleneBurrageImage from '@/images/avatars/cathlene-burrage.jpg';
+import damarisKimuraImage from '@/images/avatars/damaris-kimura.jpg';
+import dianneGuilianelliImage from '@/images/avatars/dianne-guilianelli.jpg';
+import erhartCockrinImage from '@/images/avatars/erhart-cockrin.jpg';
+import giordanoSagucioImage from '@/images/avatars/giordano-sagucio.jpg';
+import gordonSandersonImage from '@/images/avatars/gordon-sanderson.jpg';
+import heatherTerryImage from '@/images/avatars/heather-terry.jpg';
+import ibrahimFraschImage from '@/images/avatars/ibrahim-frasch.jpg';
+import jaquelinIschImage from '@/images/avatars/jaquelin-isch.jpg';
+import kimberlyParsonsImage from '@/images/avatars/kimberly-parsons.jpg';
+import parkerJohnsonImage from '@/images/avatars/parker-johnson.jpg';
+import piersWilkinsImage from '@/images/avatars/piers-wilkins.jpg';
+import richardAstley from '@/images/avatars/richard-astley.jpg';
+import rinaldoBeynonImage from '@/images/avatars/rinaldo-beynon.jpg';
+import ronniCantadoreImage from '@/images/avatars/ronni-cantadore.jpg';
+import stevenMchailImage from '@/images/avatars/steven-mchail.jpg';
+import waylonHydenImage from '@/images/avatars/waylon-hyden.jpg';
 
 const days = [
   {
@@ -132,7 +132,7 @@ const days = [
       },
     ],
   },
-]
+];
 
 function ImageClipPaths({
   id,
@@ -152,27 +152,27 @@ function ImageClipPaths({
         </clipPath>
       </defs>
     </svg>
-  )
+  );
 }
 
 export function ArtistList() {
-  let id = useId()
-  let [tabOrientation, setTabOrientation] = useState('horizontal')
+  let id = useId();
+  let [tabOrientation, setTabOrientation] = useState('horizontal');
 
   useEffect(() => {
-    let lgMediaQuery = window.matchMedia('(min-width: 1024px)')
+    let lgMediaQuery = window.matchMedia('(min-width: 1024px)');
 
     function onMediaQueryChange({ matches }) {
-      setTabOrientation(matches ? 'vertical' : 'horizontal')
+      setTabOrientation(matches ? 'vertical' : 'horizontal');
     }
 
-    onMediaQueryChange(lgMediaQuery)
-    lgMediaQuery.addEventListener('change', onMediaQueryChange)
+    onMediaQueryChange(lgMediaQuery);
+    lgMediaQuery.addEventListener('change', onMediaQueryChange);
 
     return () => {
-      lgMediaQuery.removeEventListener('change', onMediaQueryChange)
-    }
-  }, [])
+      lgMediaQuery.removeEventListener('change', onMediaQueryChange);
+    };
+  }, []);
 
   return (
     <section id="artists" aria-labelledby="artists-title">
@@ -230,42 +230,44 @@ export function ArtistList() {
           <div className="relative -mx-4 flex overflow-x-auto pb-4 sm:mx-0 sm:block sm:overflow-visible sm:pb-0">
             <div className="absolute bottom-0 top-2 left-0.5 hidden w-px bg-slate-200 lg:block" />
             <Tab.List className="grid auto-cols-auto grid-flow-col justify-start gap-x-8 gap-y-10 whitespace-nowrap px-4 sm:mx-auto sm:max-w-2xl sm:grid-cols-3 sm:px-0 sm:text-center lg:grid-flow-row lg:grid-cols-1 lg:text-left">
-              {({ selectedIndex }) =>
-                days.map((day, currIndex) => (
-                  <div key={day.description} className="relative lg:pl-8">
-                    <DiamondIcon
-                      className={clsx(
-                        'absolute top-[0.5625rem] left-[-0.5px] hidden h-1.5 w-1.5 overflow-visible lg:block',
-                        currIndex === selectedIndex
-                          ? 'fill-blue-600 stroke-blue-600'
-                          : 'fill-transparent stroke-slate-400'
-                      )}
-                    />
-                    <div className="relative">
-                      <div
+              {({ selectedIndex }) => (
+                <>
+                  {days.map((day, currIndex) => (
+                    <div key={day.description} className="relative lg:pl-8">
+                      <DiamondIcon
                         className={clsx(
-                          'font-mono text-sm',
+                          'absolute top-[0.5625rem] left-[-0.5px] hidden h-1.5 w-1.5 overflow-visible lg:block',
                           currIndex === selectedIndex
-                            ? 'text-blue-600'
-                            : 'text-slate-500'
+                            ? 'fill-blue-600 stroke-blue-600'
+                            : 'fill-transparent stroke-slate-400'
                         )}
-                      >
-                        <Tab className="[&:not(:focus-visible)]:focus:outline-none">
-                          <span className="absolute inset-0" />
-                          {day.name}
-                        </Tab>
-                      </div>
-                      <div className="mt-1.5 block text-2xl font-semibold tracking-tight text-blue-900">
-                        {day.description}
+                      />
+                      <div className="relative">
+                        <div
+                          className={clsx(
+                            'font-mono text-sm',
+                            currIndex === selectedIndex
+                              ? 'text-blue-600'
+                              : 'text-slate-500'
+                          )}
+                        >
+                          <Tab className="[&:not(:focus-visible)]:focus:outline-none">
+                            <span className="absolute inset-0" />
+                            {day.name}
+                          </Tab>
+                        </div>
+                        <div className="mt-1.5 block text-2xl font-semibold tracking-tight text-blue-900">
+                          {day.description}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))
-              }
+                  ))}
+                </>
+              )}
             </Tab.List>
           </div>
         </Tab.Group>
       </div>
     </section>
-  )
+  );
 }
