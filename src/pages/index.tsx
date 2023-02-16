@@ -1,7 +1,7 @@
-import { Footer } from '@/components/Footer';
-import { Header } from '@/components/Header';
-import { Hero } from '@/components/Hero';
-import { PrimaryFeatures } from '@/components/PrimaryFeatures';
+import { Footer } from '@/components/Layout/Footer';
+import { Header } from '@/components/Layout/Header';
+import { Hero } from '@/components/HomePage/Hero';
+import { PrimaryFeatures } from '@/components/HomePage/PrimaryFeatures';
 import Head from 'next/head';
 
 export default function Home() {

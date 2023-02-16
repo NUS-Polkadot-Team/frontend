@@ -1,14 +1,14 @@
 import '@/styles/tailwind.css';
 import 'focus-visible';
 
-import { Layout } from '@/components/Layout';
+import { Layout } from '@/components/Layout/Layout';
 import type { AppProps } from 'next/app';
 
 // include the [id] route in the layoutRoutes array
-const layoutRoutes = ['/']
+const layoutRoutes = ['/'];
 
 export default function App({ Component, pageProps, router }: AppProps) {
-  const showLayout = !layoutRoutes.includes(router.route)
+  const showLayout = !layoutRoutes.includes(router.route);
 
   if (showLayout) {
     return (
