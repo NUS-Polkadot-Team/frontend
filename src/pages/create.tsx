@@ -1,61 +1,157 @@
-import React from 'react'
+import { useState, type FormEvent, type ChangeEvent } from 'react';
+import Head from 'next/head';
+
+import { Container } from '@/components/LayoutContainer';
+
+type FormData = {
+  title: string;
+  image?: File;
+  description: string;
+  prize: number;
+  designsRequired: number;
+};
+
+function CreateForm() {
+  const [formData, setFormData] = useState<FormData>({
+    title: '',
+    image: undefined,
+    description: '',
+    prize: 0,
+    designsRequired: 1,
+  });
+
+  const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    // Handle here
+  };
+
+  const handleInputChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = event.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleFileInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    setFormData((prevState) => ({
+      ...prevState,
+      image: file,
+    }));
+  };
+
+  const customInputStyles = {
+    inputField:
+      'w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200',
+    inputLabel: 'block text-sm font-medium text-gray-700',
+    submitButton:
+      'inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500',
+  };
+
+  return (
+    <form
+      onSubmit={handleFormSubmit}
+      className="flex max-w-7xl flex-col space-y-6 px-6 py-6"
+    >
+      <div>
+        <label htmlFor="title" className={customInputStyles.inputLabel}>
+          Title:
+        </label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          value={formData.title}
+          onChange={handleInputChange}
+          required
+          className={customInputStyles.inputField}
+        />
+      </div>
+      <div>
+        <label htmlFor="image" className={customInputStyles.inputLabel}>
+          Image:
+        </label>
+        <input
+          type="file"
+          id="image"
+          name="image"
+          accept="image/*"
+          onChange={handleFileInputChange}
+          className={customInputStyles.inputField}
+        />
+      </div>
+      <div>
+        <label htmlFor="description" className={customInputStyles.inputLabel}>
+          Description:
+        </label>
+        <textarea
+          id="description"
+          name="description"
+          value={formData.description}
+          onChange={handleInputChange}
+          required
+          className={customInputStyles.inputField}
+        />
+      </div>
+      <div>
+        <label htmlFor="prize" className={customInputStyles.inputLabel}>
+          Prize:
+        </label>
+        <input
+          type="number"
+          id="prize"
+          name="prize"
+          value={formData.prize}
+          onChange={handleInputChange}
+          required
+          className={customInputStyles.inputField}
+        />
+      </div>
+      <div>
+        <label
+          htmlFor="designsRequired"
+          className={customInputStyles.inputLabel}
+        >
+          Designs Required:
+        </label>
+        <input
+          type="number"
+          id="designsRequired"
+          name="designsRequired"
+          value={formData.designsRequired}
+          onChange={handleInputChange}
+          required
+          className={customInputStyles.inputField}
+        />
+      </div>
+      <button type="submit" className={customInputStyles.submitButton}>
+        Submit
+      </button>
+    </form>
+  );
+}
 
 export default function create() {
   return (
-    <htmlForm className="w-full max-w-lg">
-  <div className="flex flex-wrap -mx-3 mb-6">
-    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
-        First Name
-      </label>
-      <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Jane">
-      <p className="text-red-500 text-xs italic">Please fill out this field.</p>
-    </div>
-    <div className="w-full md:w-1/2 px-3">
-      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-last-name">
-        Last Name
-      </label>
-      <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Doe">
-    </div>
-  </div>
-  <div className="flex flex-wrap -mx-3 mb-6">
-    <div className="w-full px-3">
-      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-password">
-        Password
-      </label>
-      <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="password" placeholder="******************">
-      <p className="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p>
-    </div>
-  </div>
-  <div className="flex flex-wrap -mx-3 mb-2">
-    <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-city">
-        City
-      </label>
-      <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Albuquerque">
-    </div>
-    <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-state">
-        State
-      </label>
-      <div className="relative">
-        <select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-          <option>New Mexico</option>
-          <option>Missouri</option>
-          <option>Texas</option>
-        </select>
-        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-          <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-        </div>
+    <>
+      <Head>
+        <title>ArtFi - Create</title>
+        <meta
+          name="description"
+          content="Building communities of artists, Empowering the creator economy"
+        />
+      </Head>
+      <div className="pt-16 pb-12 sm:pb-4 lg:pt-12 ">
+        <Container>
+          <h1 className="text-2xl font-bold leading-7 text-slate-900">
+            Create Bounty
+          </h1>
+        </Container>
+        <CreateForm />
       </div>
-    </div>
-    <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-zip">
-        Zip
-      </label>
-      <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-zip" type="text" placeholder="90210">
-    </div>
-  </div>
-</htmlForm>
-  )
+    </>
+  );
 }

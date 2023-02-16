@@ -1,39 +1,39 @@
-import Head from 'next/head'
-import Link from 'next/link'
-import { SVGProps, useMemo } from 'react'
-import { parse } from 'rss-to-json'
+import Head from 'next/head';
+import Link from 'next/link';
+import { SVGProps, useMemo } from 'react';
+import { parse } from 'rss-to-json';
 
-import { Container } from '@/components/LayoutContainer'
-import { FormattedDate } from '@/components/FormattedDate'
+import { Container } from '@/components/LayoutContainer';
+import { FormattedDate } from '@/components/FormattedDate';
 
 interface BountyEntryProps {
-  bounty: Bounty
+  bounty: Bounty;
 }
 
 export interface Submission {
-  published: string //date the submission was published
-  title: string // title of the submission
+  published: string; //date the submission was published
+  title: string; // title of the submission
   image: {
-    src: string
-    type: string
-  } // image used for the submission
-  address: string // address of the submission
-  artistAddress: string // artist address of the submission
-  bountyAddress: string // bounty address of the submission
+    src: string;
+    type: string;
+  }; // image used for the submission
+  address: string; // address of the submission
+  artistAddress: string; // artist address of the submission
+  bountyAddress: string; // bounty address of the submission
 }
 
 export interface Bounty {
-  published: string //date the bounty was published
-  title: string // title of the bounty
+  published: string; //date the bounty was published
+  title: string; // title of the bounty
   image: {
-    src: string
-    type: string
-  } // image used for the bounty
-  address: string // address of the bounty
-  description: string // description of the bounty
-  prize: string // prize in eth of the bounty
-  designsRequired: string // number of designs required for the bounty
-  selectedDesign: string // address of selected design
+    src: string;
+    type: string;
+  }; // image used for the bounty
+  address: string; // address of the bounty
+  description: string; // description of the bounty
+  prize: string; // prize in eth of the bounty
+  designsRequired: string; // number of designs required for the bounty
+  selectedDesign: string; // address of selected design
 }
 
 const bounties = [
@@ -50,10 +50,10 @@ const bounties = [
     designsRequired: '1',
     selectedDesign: '',
   },
-]
+];
 
 function BountyEntry({ bounty }: BountyEntryProps) {
-  let date = new Date(bounty.published)
+  let date = new Date(bounty.published);
 
   return (
     <article
@@ -100,11 +100,11 @@ function BountyEntry({ bounty }: BountyEntryProps) {
         </div>
       </Container>
     </article>
-  )
+  );
 }
 
 interface HomeProps {
-  bounty: Bounty[]
+  bounty: Bounty[];
 }
 
 export default function Home({ bounty }: HomeProps) {
@@ -130,7 +130,7 @@ export default function Home({ bounty }: HomeProps) {
         </div>
       </div>
     </>
-  )
+  );
 }
 
 // export async function getStaticProps() {
