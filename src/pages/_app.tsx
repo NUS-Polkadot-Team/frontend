@@ -1,23 +1,21 @@
-import { Layout } from '@/components/Layout'
-import type { AppProps } from 'next/app'
+import '@/styles/tailwind.css';
+import 'focus-visible';
 
-import '@/styles/tailwind.css'
-import 'focus-visible'
+import { Layout } from '@/components/Layout';
+import type { AppProps } from 'next/app';
 
 const layoutRoutes = ['/bounties', '/artists']
 
 export default function App({ Component, pageProps, router }: AppProps) {
-  const showLayout = layoutRoutes.includes(router.route)
+  const showLayout = layoutRoutes.includes(router.route);
 
-  return (
-    <>
-      {showLayout ? (
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      ) : (
+  if (showLayout) {
+    return (
+      <Layout>
         <Component {...pageProps} />
-      )}
-    </>
-  )
+      </Layout>
+    );
+  }
+
+  return <Component {...pageProps} />;
 }

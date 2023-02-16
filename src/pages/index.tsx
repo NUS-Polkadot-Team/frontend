@@ -1,9 +1,8 @@
-import Head from 'next/head'
-
-import { Footer } from '@/components/Footer'
-import { Header } from '@/components/Header'
-import { Hero } from '@/components/Hero'
-import { PrimaryFeatures } from '@/components/PrimaryFeatures'
+import { Footer } from '@/components/Footer';
+import { Header } from '@/components/Header';
+import { Hero } from '@/components/Hero';
+import { PrimaryFeatures } from '@/components/PrimaryFeatures';
+import Head from 'next/head';
 
 export default function Home() {
   return (
@@ -22,5 +21,5 @@ export default function Home() {
       </main>
       <Footer />
     </>
-  )
+  );
 }
