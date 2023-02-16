@@ -1,4 +1,4 @@
-import { SVGProps } from 'react';
+import type { SVGProps } from 'react';
 
 // spotify icon
 function SpotifyIcon(props: SVGProps<SVGSVGElement>) {

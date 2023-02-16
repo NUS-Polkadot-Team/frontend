@@ -1,4 +1,4 @@
-import { SVGProps } from 'react';
+import type { SVGProps } from 'react';
 
 // instagram icon
 export function InstagramIcon(props: SVGProps<SVGSVGElement>) {

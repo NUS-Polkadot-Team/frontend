@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { SVGProps, useMemo } from 'react';
+import type { SVGProps, useMemo } from 'react';
 import { parse } from 'rss-to-json';
 
 import { Container } from '@/components/Layout/LayoutContainer';

@@ -1,4 +1,4 @@
-import { SVGProps } from 'react';
+import type { SVGProps } from 'react';
 
 function OvercastIcon(props: SVGProps<SVGSVGElement>) {
   return (

@@ -1,4 +1,4 @@
-import { SVGProps } from 'react';
+import type { SVGProps } from 'react';
 
 interface TinyWaveFormIconProps extends SVGProps<SVGSVGElement> {
   colors: string[];

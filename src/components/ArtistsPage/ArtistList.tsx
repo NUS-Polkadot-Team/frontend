@@ -162,7 +162,7 @@ export function ArtistList() {
   useEffect(() => {
     let lgMediaQuery = window.matchMedia('(min-width: 1024px)');
 
-    function onMediaQueryChange({ matches }) {
+    function onMediaQueryChange({ matches }: { matches: boolean }) {
       setTabOrientation(matches ? 'vertical' : 'horizontal');
     }
 

@@ -1,4 +1,4 @@
-import { SVGProps } from 'react';
+import type { SVGProps } from 'react';
 
 // github icon
 export function GitHubIcon(props: SVGProps<SVGSVGElement>) {

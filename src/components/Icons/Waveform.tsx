@@ -1,5 +1,5 @@
 import { SVGProps, useId } from 'react';
-import { randomBetween } from './Layout';
+import { randomBetween } from '../Layout/Layout';
 
 export function Waveform(props: SVGProps<SVGSVGElement>) {
   let id = useId();
