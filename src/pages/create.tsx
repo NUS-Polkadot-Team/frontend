@@ -1,7 +1,7 @@
 import { useState, type FormEvent, type ChangeEvent } from 'react';
 import Head from 'next/head';
 
-import { Container } from '@/components/LayoutContainer';
+import { Container } from '@/components/Layout/LayoutContainer';
 
 type FormData = {
   title: string;

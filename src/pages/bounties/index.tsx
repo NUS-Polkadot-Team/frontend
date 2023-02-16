@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { SVGProps, useMemo } from 'react';
 import { parse } from 'rss-to-json';
 
-import { Container } from '@/components/LayoutContainer';
-import { FormattedDate } from '@/components/FormattedDate';
+import { Container } from '@/components/Layout/LayoutContainer';
+import { FormattedDate } from '@/components/Layout/FormattedDate';
 
 interface BountyEntryProps {
   bounty: Bounty;
