@@ -1,12 +1,13 @@
-import Link from 'next/link'
-import clsx from 'clsx'
+import Link, { LinkProps } from 'next/link';
+import clsx from 'clsx';
+import type { DetailedHTMLProps, ButtonHTMLAttributes } from 'react';
 
 const baseStyles = {
   solid:
     'group inline-flex items-center justify-center rounded-full py-2 px-4 text-sm font-semibold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2',
   outline:
     'group inline-flex ring-1 items-center justify-center rounded-full py-2 px-4 text-sm focus:outline-none',
-}
+};
 
 const variantStyles = {
   solid: {
@@ -22,29 +23,39 @@ const variantStyles = {
     white:
       'ring-slate-700 text-white hover:ring-slate-500 active:ring-slate-700 active:text-slate-400 focus-visible:outline-white',
   },
-}
+};
+
+type ButtonProps = CustomButtonProps | CustomLinkProps;
+
+type CustomLinkProps = {
+  variant?: 'solid' | 'outline';
+  color?: 'slate' | 'white';
+  className?: string;
+  href: string;
+} & LinkProps;
+
+type CustomButtonProps = {
+  variant?: 'solid' | 'outline';
+  color?: 'slate' | 'white';
+  className?: string;
+} & DetailedHTMLProps<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+>;
 
 export function Button({
   variant = 'solid',
   color = 'slate',
   className,
-  href,
   ...props
-}: {
-  variant?: 'solid' | 'outline'
-  color?: 'slate' | 'white'
-  className?: string
-  href?: string
-}): JSX.Element {
+}: ButtonProps): JSX.Element {
   className = clsx(
     baseStyles[variant],
     variantStyles[variant][color],
     className
-  )
-
-  return href ? (
-    <Link href={href} className={className} {...props} />
-  ) : (
-    <button className={className} {...props} />
-  )
+  );
+  if ('href' in props) {
+    return <Link className={className} {...props} />;
+  }
+  return <button className={className} {...props} />;
 }
