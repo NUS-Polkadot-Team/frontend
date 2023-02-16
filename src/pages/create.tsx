@@ -11,6 +11,14 @@ type FormData = {
   designsRequired: number;
 };
 
+export const customInputStyles = {
+  inputField:
+    'w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200',
+  inputLabel: 'block text-sm font-medium text-gray-700',
+  submitButton:
+    'inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500',
+};
+
 function CreateForm() {
   const [formData, setFormData] = useState<FormData>({
     title: '',
@@ -41,14 +49,6 @@ function CreateForm() {
       ...prevState,
       image: file,
     }));
-  };
-
-  const customInputStyles = {
-    inputField:
-      'w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200',
-    inputLabel: 'block text-sm font-medium text-gray-700',
-    submitButton:
-      'inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500',
   };
 
   return (
@@ -150,7 +150,9 @@ export default function create() {
             Create Bounty
           </h1>
         </Container>
-        <CreateForm />
+        <div className="divide-y divide-slate-100 sm:mt-4 lg:mt-8 lg:border-t lg:border-slate-100">
+          <CreateForm />
+        </div>
       </div>
     </>
   );
