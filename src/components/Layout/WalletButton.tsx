@@ -8,16 +8,14 @@ const WalletButton: React.FC = () => {
     usePolkadot();
   const [selectedAccount, setSelectedAccount] =
     React.useState<InjectedAccountWithMeta>();
-  console.log(accounts, activeAccount);
 
   const handleSelect = async (index: string) => {
-    console.log(index, accounts[+index]);
     setSelectedAccount(accounts[+index]);
   };
 
   const handleLogin = async () => {
     if (!api || !selectedAccount) {
-      console.log('API or account not selected');
+      console.error('API or account not selected');
       return;
     }
     await setSigner(selectedAccount);
