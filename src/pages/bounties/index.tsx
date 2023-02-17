@@ -1,7 +1,8 @@
 import { Container } from '@/components/Layout/LayoutContainer';
 import bounties, { Bounty } from '@/data/bounties';
+import usePolkadot from '@/hooks/usePolkadot';
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import BountyEntry from '../../components/BountiesPage/BountyEntry';
 
 export interface Submission {
   published: string; //date the submission was published
@@ -11,6 +12,10 @@ export interface Submission {
   artistAddress: string; // artist address of the submission
   bountyAddress: string; // bounty address of the submission
 }
+const BountyEntry = dynamic(
+  () => import('../../components/BountiesPage/BountyEntry'),
+  { ssr: false }
+);
 
 interface HomeProps {
   bounty: Bounty[];

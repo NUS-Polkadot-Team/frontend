@@ -1,35 +1,29 @@
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
 import { Tab } from '@headlessui/react';
 import clsx from 'clsx';
-
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import { Container } from '@/components/Layout/Container';
-import backgroundImage from '@/images/background-features.jpg';
-import screenshotExpenses from '@/images/screenshots/expenses.png';
-import screenshotPayroll from '@/images/screenshots/payroll.png';
-import screenshotReporting from '@/images/screenshots/reporting.png';
-import screenshotVatReturns from '@/images/screenshots/vat-returns.png';
 
 const features = [
   {
     title: 'Discovery',
     description: 'Community based discovery and bounties.',
-    image: screenshotPayroll,
+    image: '/screenshots/payroll.png',
   },
   {
     title: 'Funding',
     description: 'Decentralized funding process.',
-    image: screenshotExpenses,
+    image: '/screenshots/expenses.png',
   },
   {
     title: 'Vibrancy',
     description: 'Transparent and Vibrant Art Creation Scene.',
-    image: screenshotVatReturns,
+    image: '/screenshots/vat-returns.png',
   },
   {
     title: 'Reputation',
     description: 'Score Engine to build artists reputations.',
-    image: screenshotReporting,
+    image: '/screenshots/reporting.png',
   },
 ];
 
@@ -59,8 +53,8 @@ export function PrimaryFeatures() {
     >
       <Image
         className="absolute top-1/2 left-1/2 max-w-none translate-x-[-44%] translate-y-[-42%]"
-        src={backgroundImage}
-        alt=""
+        src={'/background-features.jpg'}
+        alt="Features"
         width={2245}
         height={1636}
         unoptimized
@@ -133,7 +127,9 @@ export function PrimaryFeatures() {
                       <Image
                         className="w-full"
                         src={feature.image}
-                        alt=""
+                        alt={feature.title}
+                        width={100}
+                        height={100}
                         priority
                         sizes="(min-width: 1024px) 67.8125rem, (min-width: 640px) 100vw, 45rem"
                       />

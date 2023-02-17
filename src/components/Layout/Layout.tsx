@@ -1,13 +1,14 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import type { ReactNode, SVGProps } from 'react';
-import { Button } from './Button';
 import { GitHubIcon } from '../Icons/GitHubIcon';
 import { InstagramIcon } from '../Icons/InstagramIcon';
 import { TinyWaveFormIcon } from '../Icons/TinyWaveFormIcon';
 import { TwitterIcon } from '../Icons/TwitterIcon';
 import { Waveform } from '../Icons/Waveform';
 import { AboutSection } from './AboutSection';
+import { Button } from './Button';
+import WalletButton from './WalletButton';
 
 const links = [
   // ['Spotify', SpotifyIcon],
@@ -72,6 +73,7 @@ export function Layout({ children }: { children?: ReactNode }) {
             </p>
           </div>
           <div className="mt-10 space-y-6">
+            <WalletButton />
             <Button
               variant={route === '/' ? 'solid' : 'outline'}
               href="/"

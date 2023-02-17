@@ -10,13 +10,15 @@ const layoutRoutes = ['/'];
 export default function App({ Component, pageProps, router }: AppProps) {
   const showLayout = !layoutRoutes.includes(router.route);
 
-  if (showLayout) {
-    return (
-      <Layout>
+  return (
+    <>
+      {showLayout ? (
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      ) : (
         <Component {...pageProps} />
-      </Layout>
-    );
-  }
-
-  return <Component {...pageProps} />;
+      )}
+    </>
+  );
 }

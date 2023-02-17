@@ -1,6 +1,7 @@
 import { FormattedDate } from '@/components/Layout/FormattedDate';
 import { Container } from '@/components/Layout/LayoutContainer';
 import type { Bounty } from '@/data/bounties';
+import usePolkadot from '@/hooks/usePolkadot';
 import Link from 'next/link';
 import Identicon from '../Layout/Identicon';
 

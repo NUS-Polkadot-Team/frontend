@@ -1,7 +1,6 @@
-import { useState, type FormEvent, type ChangeEvent } from 'react';
-import Head from 'next/head';
-
 import { Container } from '@/components/Layout/LayoutContainer';
+import Head from 'next/head';
+import { useState, type ChangeEvent, type FormEvent } from 'react';
 import { customInputStyles } from './create';
 
 type FormValues = {
@@ -11,7 +10,7 @@ type FormValues = {
 };
 
 function SubmitForm() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormValues>({
     bounty: '',
     image: null,
     description: '',
@@ -98,7 +97,7 @@ function SubmitForm() {
   );
 }
 
-export default function submit() {
+export default function SubmitPage() {
   return (
     <>
       <Head>
