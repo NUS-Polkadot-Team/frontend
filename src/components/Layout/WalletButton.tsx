@@ -1,13 +1,21 @@
 import usePolkadot from '@/hooks/usePolkadot';
 import type { InjectedAccountWithMeta } from '@polkadot/extension-inject/types';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from './Button';
 
 const WalletButton: React.FC = () => {
-  const { api, accounts, setActiveAccount, activeAccount, setSigner } =
-    usePolkadot();
+  const {
+    isApiLoading,
+    isExtensionLoading,
+    api,
+    accounts,
+    setup,
+    setActiveAccount,
+    activeAccount,
+    setSigner,
+  } = usePolkadot();
   const [selectedAccount, setSelectedAccount] =
-    React.useState<InjectedAccountWithMeta>();
+    useState<InjectedAccountWithMeta>();
 
   const handleSelect = async (index: string) => {
     setSelectedAccount(accounts[+index]);
@@ -32,14 +40,29 @@ const WalletButton: React.FC = () => {
     }
   }, [api, accounts]);
 
-  // No API installed
+  if (isExtensionLoading) {
+    return (
+      <div className="flex">
+        <span className="text-sm">
+          Please allow BountiFi access to your wallet
+        </span>
+        <Button onClick={setup}>Allow</Button>
+      </div>
+    );
+  }
+
+  if (isApiLoading) {
+    return <div className="text-sm">Loading...</div>;
+  }
+
   if (!api) {
-    return <div>Please install a wallet</div>;
+    // No API installed
+    return <div className="text-sm">Please install a wallet</div>;
   }
 
   // No accounts found
   if (!accounts.length) {
-    return <div>No accounts found on Shibuya Testnet</div>;
+    return <div className="text-sm">No accounts found on Shibuya Testnet</div>;
   }
 
   // Not logged in
