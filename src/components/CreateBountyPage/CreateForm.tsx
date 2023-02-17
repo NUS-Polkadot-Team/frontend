@@ -16,11 +16,7 @@ export function CreateForm() {
   const { createBounty, data, error } = useCreateBounty();
   const [ipfsHash, setIpfsHash] = useState<string>('');
 
-  const ipfs = ipfsClient({
-    host: 'ipfs.infura.io',
-    port: '5001',
-    protocol: 'https',
-  });
+  const ipfs = ipfsClient.create({ url: 'https://ipfs.infura.io:5001/api/v0' });
 
   const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
