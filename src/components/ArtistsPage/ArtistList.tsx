@@ -4,24 +4,6 @@ import Image from 'next/image';
 import { useEffect, useId, useState } from 'react';
 
 import { DiamondIcon } from '@/components/Icons/DiamondIcon';
-import andrewGreeneImage from '@/images/avatars/andrew-greene.jpg';
-import cathleneBurrageImage from '@/images/avatars/cathlene-burrage.jpg';
-import damarisKimuraImage from '@/images/avatars/damaris-kimura.jpg';
-import dianneGuilianelliImage from '@/images/avatars/dianne-guilianelli.jpg';
-import erhartCockrinImage from '@/images/avatars/erhart-cockrin.jpg';
-import giordanoSagucioImage from '@/images/avatars/giordano-sagucio.jpg';
-import gordonSandersonImage from '@/images/avatars/gordon-sanderson.jpg';
-import heatherTerryImage from '@/images/avatars/heather-terry.jpg';
-import ibrahimFraschImage from '@/images/avatars/ibrahim-frasch.jpg';
-import jaquelinIschImage from '@/images/avatars/jaquelin-isch.jpg';
-import kimberlyParsonsImage from '@/images/avatars/kimberly-parsons.jpg';
-import parkerJohnsonImage from '@/images/avatars/parker-johnson.jpg';
-import piersWilkinsImage from '@/images/avatars/piers-wilkins.jpg';
-import richardAstley from '@/images/avatars/richard-astley.jpg';
-import rinaldoBeynonImage from '@/images/avatars/rinaldo-beynon.jpg';
-import ronniCantadoreImage from '@/images/avatars/ronni-cantadore.jpg';
-import stevenMchailImage from '@/images/avatars/steven-mchail.jpg';
-import waylonHydenImage from '@/images/avatars/waylon-hyden.jpg';
 
 const days = [
   {
@@ -31,32 +13,32 @@ const days = [
       {
         name: 'Steven McHail',
         role: 'Designer at Globex Corporation',
-        image: stevenMchailImage,
+        image: '/avatars/steven-mchail.jpg',
       },
       {
         name: 'Jaquelin Isch',
         role: 'UX Design at InGen',
-        image: jaquelinIschImage,
+        image: '/avatars/jaquelin-isch.jpg',
       },
       {
         name: 'Dianne Guilianelli',
         role: 'General Manager at Initech',
-        image: dianneGuilianelliImage,
+        image: '/avatars/dianne-guilianelli.jpg',
       },
       {
         name: 'Ronni Cantadore',
         role: 'Design Engineer at Weyland-Yutani',
-        image: ronniCantadoreImage,
+        image: '/avatars/ronni-cantadore.jpg',
       },
       {
         name: 'Erhart Cockrin',
         role: 'Product Lead at Cyberdyne Systems',
-        image: erhartCockrinImage,
+        image: '/avatars/erhart-cockrin.jpg',
       },
       {
         name: 'Parker Johnson',
         role: 'UI Designer at MomCorp',
-        image: parkerJohnsonImage,
+        image: '/avatars/parker-johnson.jpg',
       },
     ],
   },
@@ -67,32 +49,32 @@ const days = [
       {
         name: 'Damaris Kimura',
         role: 'Senior Engineer at OCP',
-        image: damarisKimuraImage,
+        image: '/avatars/damaris-kimura.jpg',
       },
       {
         name: 'Ibrahim Frasch',
         role: 'Programmer at Umbrella Corp',
-        image: ibrahimFraschImage,
+        image: '/avatars/ibrahim-frasch.jpg',
       },
       {
         name: 'Cathlene Burrage',
         role: 'Frontend Developer at Buy n Large',
-        image: cathleneBurrageImage,
+        image: '/avatars/cathlene-burrage.jpg',
       },
       {
         name: 'Rinaldo Beynon',
         role: 'Data Scientist at Rekall',
-        image: rinaldoBeynonImage,
+        image: '/avatars/rinaldo-beynon.jpg',
       },
       {
         name: 'Waylon Hyden',
         role: 'DevOps at RDA Corporation',
-        image: waylonHydenImage,
+        image: '/avatars/waylon-hyden.jpg',
       },
       {
         name: 'Giordano Sagucio',
         role: 'Game Developer at Soylent Corp',
-        image: giordanoSagucioImage,
+        image: '/avatars/giordano-sagucio.jpg',
       },
     ],
   },
@@ -103,32 +85,32 @@ const days = [
       {
         name: 'Andrew Greene',
         role: 'Frontend Developer at Ultratech',
-        image: andrewGreeneImage,
+        image: '/avatars/andrew-greene.jpg',
       },
       {
         name: 'Heather Terry',
         role: 'Backend Developer at Xanatos Enterprises',
-        image: heatherTerryImage,
+        image: '/avatars/heather-terry.jpg',
       },
       {
         name: 'Piers Wilkins',
         role: 'Full stack Developer at BiffCo',
-        image: piersWilkinsImage,
+        image: '/avatars/piers-wilkins.jpg',
       },
       {
         name: 'Gordon Sanderson',
         role: 'Mobile Developer at Cobra Industries',
-        image: gordonSandersonImage,
+        image: '/avatars/gordon-sanderson.jpg',
       },
       {
         name: 'Kimberly Parsons',
         role: 'Game Developer at Tyrell Corporation',
-        image: kimberlyParsonsImage,
+        image: '/avatars/kimberly-parsons.jpg',
       },
       {
         name: 'Richard Astley',
         role: 'CEO at Roll Out',
-        image: richardAstley,
+        image: '/avatars/richard-astley.jpg',
       },
     ],
   },
@@ -210,7 +192,9 @@ export function ArtistList() {
                         <Image
                           className="absolute inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-110"
                           src={speaker.image}
-                          alt=""
+                          alt={speaker.name}
+                          width={1024}
+                          height={1024}
                           priority
                           sizes="(min-width: 1280px) 17.5rem, (min-width: 1024px) 25vw, (min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw"
                         />
