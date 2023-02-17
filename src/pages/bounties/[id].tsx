@@ -3,6 +3,8 @@ import Head from 'next/head';
 import { Container } from '@/components/Layout/LayoutContainer';
 import { useRouter } from 'next/router';
 import bounties from '@/data/bounties';
+import { dateFormatter } from '@/components/Layout/FormattedDate';
+import BountyDetails from '@/components/BountyPage/BountyDetails';
 
 export default function BountyPage() {
   const router = useRouter();
@@ -25,25 +27,17 @@ export default function BountyPage() {
       </Head>
       <div className="pt-16 pb-12 sm:pb-4 lg:pt-12">
         <Container>
-          <h1 className="text-2xl font-bold leading-7 text-slate-900">
+          <h1 className="mb-1 text-2xl font-bold leading-7 text-slate-900">
             {bounty.title}
           </h1>
+          <span className="font-mono text-sm leading-7 text-slate-700">
+            Contract Address: {bounty.address}
+          </span>
         </Container>
         <div className="divide-y divide-slate-100 sm:mt-4 lg:mt-8 lg:border-t lg:border-slate-100">
-
-          <div className='grid grid-cols-3'>
-            <div>
-              <div>
-                asd
-              </div>
-            </div>
-            <div>
-              asd
-            </div>
-            <div>
-              asd
-            </div>
-          </div>
+          <Container>
+            <BountyDetails bounty={bounty} />
+          </Container>
         </div>
       </div>
     </>

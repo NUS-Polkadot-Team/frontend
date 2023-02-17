@@ -1,12 +1,21 @@
 export interface Bounty {
-  published: string; //date the bounty was published
-  title: string; // title of the bounty
-  address: string; // address of the bounty
-  description: string; // description of the bounty
-  prize: string; // prize in eth of the bounty
+  /** Date the bounty was published */
+  published: string;
+  /** Title of the bounty */
+  title: string;
+  /** address of the bounty */
+  address: string;
+  /** description of the bounty */
+  description: string;
+  /** Bounty size in token currency */
+  prize: string;
+  /** Token symbol */
   token: string;
-  designsRequired: string; // number of designs required for the bounty
-  selectedDesign: string; // address of selected design
+  /** Number of designs required for the bounty */
+  designsRequired: string;
+  /** Address of design that won the bounty */
+  selectedDesign: string; //
+  /** Bounty status */
   status:
     | 'open'
     | 'started'
@@ -14,6 +23,7 @@ export interface Bounty {
     | 'completed'
     | 'expired'
     | 'cancelled';
+  /** Deadline of bounty */
   deadline: string;
 }
 
