@@ -29,7 +29,22 @@ export default function BountyPage() {
             {bounty.title}
           </h1>
         </Container>
-        <div className="divide-y divide-slate-100 sm:mt-4 lg:mt-8 lg:border-t lg:border-slate-100"></div>
+        <div className="divide-y divide-slate-100 sm:mt-4 lg:mt-8 lg:border-t lg:border-slate-100">
+
+          <div className='grid grid-cols-3'>
+            <div>
+              <div>
+                asd
+              </div>
+            </div>
+            <div>
+              asd
+            </div>
+            <div>
+              asd
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
