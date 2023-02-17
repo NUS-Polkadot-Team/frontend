@@ -47,7 +47,14 @@ const WalletButton = () => {
         <span className="text-sm">
           Please allow BountiFi access to your wallet
         </span>
-        <Button onClick={setup}>Allow</Button>
+        <Button
+          variant="solid"
+          href="/"
+          className="h-12 w-full"
+          onClick={setup}
+        >
+          Allow
+        </Button>
       </div>
     );
   }

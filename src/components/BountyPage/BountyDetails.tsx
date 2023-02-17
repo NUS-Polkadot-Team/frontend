@@ -9,7 +9,7 @@ const BountyDetails = ({
   bounty: { status, address, deadline, published, prize, token },
 }: BountyDetailsProps) => {
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-2 gap-4 py-10 sm:py-12">
       <div className="col-span-2">
         <h3 className="font-bold">Status</h3>
         <p className="text-sm font-semibold capitalize text-slate-600">

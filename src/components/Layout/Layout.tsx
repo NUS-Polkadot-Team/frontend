@@ -51,7 +51,7 @@ export function Layout({ children }: { children?: ReactNode }) {
             ))}
           </span>
         </div> */}
-        <div className="relative z-10 mx-auto px-4 pb-4 pt-10 sm:px-6 md:max-w-2xl md:px-4 lg:min-h-full lg:flex-auto lg:border-x lg:border-slate-200 lg:py-12 lg:px-8 xl:px-12">
+        <div className="relative z-10 mx-auto px-4 pb-4 pt-10 sm:px-6 md:max-w-2xl md:px-4 lg:min-h-full lg:flex-auto lg:border-x lg:border-slate-200 lg:py-12 lg:px-8 ">
           {/* <Link
             href="/bounty"
             className="relative mx-auto block w-48 overflow-hidden rounded-lg bg-slate-200 shadow-xl shadow-slate-200 sm:w-64 sm:rounded-xl lg:w-auto lg:rounded-2xl"
@@ -67,20 +67,15 @@ export function Layout({ children }: { children?: ReactNode }) {
             <div className="absolute inset-0 rounded-lg ring-1 ring-inset ring-black/10 sm:rounded-xl lg:rounded-2xl" />
           </Link> */}
           <div className="mt-10 text-center lg:mt-12 lg:text-left">
-            <p className="text-3xl font-extrabold text-slate-900">Welcome</p>
+            <p className="text-3xl font-extrabold text-slate-900">
+              Welcome to BountiFi
+            </p>
             <p className="mt-3 text-lg font-medium leading-8 text-slate-700">
               Empowering the creator economy - artists and NFT art scene
             </p>
           </div>
           <div className="mt-10 space-y-6">
             <WalletButton />
-            <Button
-              variant={route === '/' ? 'solid' : 'outline'}
-              href="/"
-              className="h-12 w-full"
-            >
-              Home
-            </Button>
             <Button
               variant={route === '/bounties' ? 'solid' : 'outline'}
               href="/bounties"
@@ -108,6 +103,13 @@ export function Layout({ children }: { children?: ReactNode }) {
               className="h-12 w-full"
             >
               Create Submission
+            </Button>
+            <Button
+              variant={route === '/' ? 'solid' : 'outline'}
+              href="/"
+              className="h-12 w-full"
+            >
+              Back to Landing Page
             </Button>
           </div>
           <AboutSection className="mt-12 hidden lg:block" />
