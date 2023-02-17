@@ -19,7 +19,7 @@ export default function BountyPage() {
   return (
     <>
       <Head>
-        <title>BountiFi - Bounties</title>
+        <title>BountiFi - {id}</title>
         <meta
           name="description"
           content="Building communities of artists, Empowering the creator economy"

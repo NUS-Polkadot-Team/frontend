@@ -67,7 +67,9 @@ export function Layout({ children }: { children?: ReactNode }) {
             <div className="absolute inset-0 rounded-lg ring-1 ring-inset ring-black/10 sm:rounded-xl lg:rounded-2xl" />
           </Link> */}
           <div className="mt-10 text-center lg:mt-12 lg:text-left">
-            <p className="text-3xl font-extrabold text-slate-900">Welcome</p>
+            <p className="text-3xl font-extrabold text-slate-900">
+              Welcome to BountiFi
+            </p>
             <p className="mt-3 text-lg font-medium leading-8 text-slate-700">
               Empowering the creator economy - artists and NFT art scene
             </p>
