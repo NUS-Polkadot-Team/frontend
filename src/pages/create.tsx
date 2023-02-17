@@ -1,14 +1,16 @@
-import { useState, type FormEvent, type ChangeEvent } from 'react';
-import Head from 'next/head';
-
 import { Container } from '@/components/Layout/LayoutContainer';
+import useCreateBounty from '@/hooks/useCreateBounty';
+import Head from 'next/head';
+import { useState, type ChangeEvent, type FormEvent } from 'react';
+import { toast } from 'react-toastify';
+import BN from 'bn.js';
 
 type FormData = {
   title: string;
   image?: File;
   description: string;
   prize: number;
-  designsRequired: number;
+  deadline: string;
 };
 
 export const customInputStyles = {
@@ -19,19 +21,38 @@ export const customInputStyles = {
     'inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500',
 };
 
+const SHIBUYA_DECIMALS = 18;
+
 function CreateForm() {
   const [formData, setFormData] = useState<FormData>({
     title: '',
     image: undefined,
     description: '',
     prize: 0,
-    designsRequired: 1,
+    deadline: '',
   });
+  const { createBounty, data, error } = useCreateBounty();
 
-  const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Handle here
+
+    await createBounty(
+      'Qmde2yQH1VNuDXvAdPFnZnZABSEZwmbSmxkNoBwtazDJUd',
+      // TODO: fix unsafe number conversion
+      formData.prize * 10 ** 18
+    );
+    if (error) {
+      toast.error("Couldn't create bounty, please check if you are logged in.");
+      return;
+    }
+    toast.success(
+      <div>
+        <h3>Successfully created bounty</h3>
+        <span>Address: {data?.toString()}</span>
+      </div>
+    );
   };
+  // toast.success('hello');
 
   const handleInputChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -111,17 +132,14 @@ function CreateForm() {
         />
       </div>
       <div>
-        <label
-          htmlFor="designsRequired"
-          className={customInputStyles.inputLabel}
-        >
-          Designs Required:
+        <label htmlFor="deadline" className={customInputStyles.inputLabel}>
+          Deadline:
         </label>
         <input
-          type="number"
-          id="designsRequired"
-          name="designsRequired"
-          value={formData.designsRequired}
+          type="date"
+          id="deadline"
+          name="deadline"
+          value={formData.deadline}
           onChange={handleInputChange}
           required
           className={customInputStyles.inputField}
@@ -134,7 +152,7 @@ function CreateForm() {
   );
 }
 
-export default function create() {
+export default function CreatePage() {
   return (
     <>
       <Head>

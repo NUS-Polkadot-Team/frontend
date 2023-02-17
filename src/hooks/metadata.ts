@@ -519,6 +519,6 @@ const metadata = {
       },
     ],
   },
-};
+} as const;
 
 export default metadata;
