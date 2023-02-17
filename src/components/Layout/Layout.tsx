@@ -77,13 +77,6 @@ export function Layout({ children }: { children?: ReactNode }) {
           <div className="mt-10 space-y-6">
             <WalletButton />
             <Button
-              variant={route === '/' ? 'solid' : 'outline'}
-              href="/"
-              className="h-12 w-full"
-            >
-              Home
-            </Button>
-            <Button
               variant={route === '/bounties' ? 'solid' : 'outline'}
               href="/bounties"
               className="h-12 w-full"
@@ -110,6 +103,13 @@ export function Layout({ children }: { children?: ReactNode }) {
               className="h-12 w-full"
             >
               Create Submission
+            </Button>
+            <Button
+              variant={route === '/' ? 'solid' : 'outline'}
+              href="/"
+              className="h-12 w-full"
+            >
+              Back to Landing Page
             </Button>
           </div>
           <AboutSection className="mt-12 hidden lg:block" />
