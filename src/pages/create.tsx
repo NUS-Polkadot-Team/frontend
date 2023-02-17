@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { useState, type ChangeEvent, type FormEvent } from 'react';
 import { toast } from 'react-toastify';
 import BN from 'bn.js';
+import ipfsClient from 'ipfs-http-client';
 
 type FormData = {
   title: string;
@@ -32,15 +33,28 @@ function CreateForm() {
     deadline: '',
   });
   const { createBounty, data, error } = useCreateBounty();
+  const [ipfsHash, setIpfsHash] = useState<string>('');
+
+  const ipfs = ipfsClient({
+    host: 'ipfs.infura.io',
+    port: '5001',
+    protocol: 'https',
+  });
 
   const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    await createBounty(
-      'Qmde2yQH1VNuDXvAdPFnZnZABSEZwmbSmxkNoBwtazDJUd',
-      // TODO: fix unsafe number conversion
-      formData.prize * 10 ** 18
-    );
+    const file = await ipfs.add(Buffer.from(JSON.stringify(formData)));
+
+    setIpfsHash(file.cid.toString());
+
+    await createBounty(ipfsHash, formData.prize * 10 ** 18);
+
+    // await createBounty(
+    //   'Qmde2yQH1VNuDXvAdPFnZnZABSEZwmbSmxkNoBwtazDJUd',
+    //   // TODO: fix unsafe number conversion
+    //   formData.prize * 10 ** 18
+    // );
     if (error) {
       toast.error("Couldn't create bounty, please check if you are logged in.");
       return;
