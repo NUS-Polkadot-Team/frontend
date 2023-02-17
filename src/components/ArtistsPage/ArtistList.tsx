@@ -5,135 +5,9 @@ import { useEffect, useId, useState } from 'react';
 
 import { DiamondIcon } from '@/components/Icons/DiamondIcon';
 import Link from 'next/link';
+import artists from '@/data/artists';
 
-const days = [
-  {
-    name: 'Top Artists',
-    description: 'Over 100 Bounties',
-    speakers: [
-      {
-        name: 'Steven McHail',
-        role: 'Designer at Globex Corporation',
-        image: '/avatars/steven-mchail.jpg',
-        src: '0x1',
-      },
-      {
-        name: 'Jaquelin Isch',
-        role: 'UX Design at InGen',
-        image: '/avatars/jaquelin-isch.jpg',
-        src: '0x1',
-      },
-      {
-        name: 'Dianne Guilianelli',
-        role: 'General Manager at Initech',
-        image: '/avatars/dianne-guilianelli.jpg',
-        src: '0x1',
-      },
-      {
-        name: 'Ronni Cantadore',
-        role: 'Design Engineer at Weyland-Yutani',
-        image: '/avatars/ronni-cantadore.jpg',
-        src: '0x1',
-      },
-      {
-        name: 'Erhart Cockrin',
-        role: 'Product Lead at Cyberdyne Systems',
-        image: '/avatars/erhart-cockrin.jpg',
-        src: '0x1',
-      },
-      {
-        name: 'Parker Johnson',
-        role: 'UI Designer at MomCorp',
-        image: '/avatars/parker-johnson.jpg',
-        src: '0x1',
-      },
-    ],
-  },
-  {
-    name: 'Rising Artists',
-    description: 'Over 50 Bounties',
-    speakers: [
-      {
-        name: 'Damaris Kimura',
-        role: 'Senior Engineer at OCP',
-        image: '/avatars/damaris-kimura.jpg',
-        src: '0x1',
-      },
-      {
-        name: 'Ibrahim Frasch',
-        role: 'Programmer at Umbrella Corp',
-        image: '/avatars/ibrahim-frasch.jpg',
-        src: '0x1',
-      },
-      {
-        name: 'Cathlene Burrage',
-        role: 'Frontend Developer at Buy n Large',
-        image: '/avatars/cathlene-burrage.jpg',
-        src: '0x1',
-      },
-      {
-        name: 'Rinaldo Beynon',
-        role: 'Data Scientist at Rekall',
-        image: '/avatars/rinaldo-beynon.jpg',
-        src: '0x1',
-      },
-      {
-        name: 'Waylon Hyden',
-        role: 'DevOps at RDA Corporation',
-        image: '/avatars/waylon-hyden.jpg',
-        src: '0x1',
-      },
-      {
-        name: 'Giordano Sagucio',
-        role: 'Game Developer at Soylent Corp',
-        image: '/avatars/giordano-sagucio.jpg',
-        src: '0x1',
-      },
-    ],
-  },
-  {
-    name: 'Recommended Artists',
-    description: 'Curated for you',
-    speakers: [
-      {
-        name: 'Andrew Greene',
-        role: 'Frontend Developer at Ultratech',
-        image: '/avatars/andrew-greene.jpg',
-        src: '0x1',
-      },
-      {
-        name: 'Heather Terry',
-        role: 'Backend Developer at Xanatos Enterprises',
-        image: '/avatars/heather-terry.jpg',
-        src: '0x1',
-      },
-      {
-        name: 'Piers Wilkins',
-        role: 'Full stack Developer at BiffCo',
-        image: '/avatars/piers-wilkins.jpg',
-        src: '0x1',
-      },
-      {
-        name: 'Gordon Sanderson',
-        role: 'Mobile Developer at Cobra Industries',
-        image: '/avatars/gordon-sanderson.jpg',
-        src: '0x1',
-      },
-      {
-        name: 'Kimberly Parsons',
-        role: 'Game Developer at Tyrell Corporation',
-        image: '/avatars/kimberly-parsons.jpg',
-        src: '0x1',
-      },
-      {
-        name: 'Richard Astley',
-        role: 'CEO at Roll Out',
-        image: '/avatars/richard-astley.jpg',
-        src: '0x1',
-      },
-    ],
-  },
-];
+const classifications = artists;
 
 function ImageClipPaths({
   id,
@@ -185,15 +59,15 @@ export function ArtistList() {
           vertical={tabOrientation === 'vertical'}
         >
           <Tab.Panels className="order-last xl:order-first xl:col-span-3">
-            {days.map((day) => (
+            {classifications.map((classification) => (
               <Tab.Panel
-                key={day.description}
+                key={classification.description}
                 className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 sm:gap-y-16 md:grid-cols-3 [&:not(:focus-visible)]:focus:outline-none"
                 unmount={false}
               >
-                {day.speakers.map((speaker, speakerIndex) => (
-                  <div key={speakerIndex}>
-                    <Link href={`/artists/${speaker.src}`}>
+                {classification.artists.map((artist, artistIndex) => (
+                  <div key={artistIndex}>
+                    <Link href={`/artists/${artist.address}`}>
                       <div className="rounded-4xl group relative h-[17.5rem] transform overflow-hidden">
                         <div
                           className={clsx(
@@ -202,19 +76,19 @@ export function ArtistList() {
                               'border-blue-300',
                               'border-indigo-300',
                               'border-sky-300',
-                            ][speakerIndex % 3]
+                            ][artistIndex % 3]
                           )}
                         />
                         <div
                           className="absolute inset-0 bg-indigo-50"
                           style={{
-                            clipPath: `url(#${id}-${speakerIndex % 3})`,
+                            clipPath: `url(#${id}-${artistIndex % 3})`,
                           }}
                         >
                           <Image
                             className="absolute inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-110"
-                            src={speaker.image}
-                            alt={speaker.name}
+                            src={artist.image}
+                            alt={artist.name}
                             width={1024}
                             height={1024}
                             priority
@@ -223,10 +97,10 @@ export function ArtistList() {
                         </div>
                       </div>
                       <h3 className="font-display mt-8 text-xl font-bold tracking-tight text-slate-900">
-                        {speaker.name}
+                        {artist.name}
                       </h3>
                       <p className="mt-1 text-base tracking-tight text-slate-500">
-                        {speaker.role}
+                        {artist.description}
                       </p>
                     </Link>
                   </div>
@@ -239,8 +113,11 @@ export function ArtistList() {
             <Tab.List className="grid auto-cols-auto grid-flow-col justify-start gap-x-8 gap-y-10 whitespace-nowrap px-4 sm:mx-auto sm:max-w-2xl sm:grid-cols-3 sm:px-0 sm:text-center xl:grid-flow-row xl:grid-cols-1 xl:text-left">
               {({ selectedIndex }) => (
                 <>
-                  {days.map((day, currIndex) => (
-                    <div key={day.description} className="relative xl:pl-8">
+                  {classifications.map((classification, currIndex) => (
+                    <div
+                      key={classification.description}
+                      className="relative xl:pl-8"
+                    >
                       <DiamondIcon
                         className={clsx(
                           'absolute top-[0.5625rem] left-[-0.5px] hidden h-1.5 w-1.5 overflow-visible xl:block',
@@ -260,11 +137,11 @@ export function ArtistList() {
                         >
                           <Tab className="[&:not(:focus-visible)]:focus:outline-none">
                             <span className="absolute inset-0" />
-                            {day.name}
+                            {classification.name}
                           </Tab>
                         </div>
                         <div className="mt-1.5 block text-2xl font-semibold tracking-tight text-blue-900">
-                          {day.description}
+                          {classification.description}
                         </div>
                       </div>
                     </div>
