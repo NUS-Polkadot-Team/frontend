@@ -1,10 +1,9 @@
 import Head from 'next/head';
 
-import { Container } from '@/components/Layout/LayoutContainer';
-import { useRouter } from 'next/router';
-import bounties from '@/data/bounties';
-import { dateFormatter } from '@/components/Layout/FormattedDate';
 import BountyDetails from '@/components/BountyPage/BountyDetails';
+import { Container } from '@/components/Layout/LayoutContainer';
+import bounties from '@/data/bounties';
+import { useRouter } from 'next/router';
 
 export default function BountyPage() {
   const router = useRouter();

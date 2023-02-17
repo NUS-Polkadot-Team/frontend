@@ -1,8 +1,6 @@
 import Link from 'next/link';
-
 import { Container } from '@/components/Layout/Container';
 import { Logo } from '@/components/Layout/Logo';
-import { NavLink } from '@/components/Layout/NavLink';
 
 export function Footer() {
   return (
@@ -10,13 +8,13 @@ export function Footer() {
       <Container>
         <div className="flex flex-col items-center justify-center py-8">
           <Logo className="mx-auto h-10 w-full " />
-          <nav className="mt-10 text-sm" aria-label="quick links">
+          {/* <nav className="mt-10 text-sm" aria-label="quick links">
             <div className="-my-1 flex justify-center gap-x-6">
               <NavLink href="#features">Features</NavLink>
-              {/* <NavLink href="#testimonials">Testimonials</NavLink>
-              <NavLink href="#pricing">Pricing</NavLink> */}
+              <NavLink href="#testimonials">Testimonials</NavLink>
+              <NavLink href="#pricing">Pricing</NavLink>
             </div>
-          </nav>
+          </nav> */}
         </div>
         <div className="flex flex-col items-center border-t border-slate-400/10 py-10 sm:flex-row-reverse sm:justify-between">
           <div className="flex gap-x-6">
@@ -46,7 +44,7 @@ export function Footer() {
             </Link>
           </div>
           <p className="mt-6 text-sm text-slate-500 sm:mt-0">
-            Copyright &copy; {new Date().getFullYear()} NUS. All rights
+            Copyright &copy; {new Date().getFullYear()} BountiFi. All rights
             reserved.
           </p>
         </div>
