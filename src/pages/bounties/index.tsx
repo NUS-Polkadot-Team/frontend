@@ -1,10 +1,11 @@
+import { FormattedDate } from '@/components/Layout/FormattedDate';
+import { Container } from '@/components/Layout/LayoutContainer';
 import Head from 'next/head';
 import Link from 'next/link';
-import { SVGProps, useMemo } from 'react';
-import { parse } from 'rss-to-json';
-
-import { Container } from '@/components/Layout/LayoutContainer';
-import { FormattedDate } from '@/components/Layout/FormattedDate';
+import dynamic from 'next/dynamic';
+import usePolkadot from '@/hooks/usePolkadot';
+import { useState } from 'react';
+import useIsDomLoaded from '@/hooks/useIsDomLoaded';
 
 interface BountyEntryProps {
   bounty: Bounty;
@@ -32,25 +33,38 @@ export interface Bounty {
   address: string; // address of the bounty
   description: string; // description of the bounty
   prize: string; // prize in eth of the bounty
+  token: string;
   designsRequired: string; // number of designs required for the bounty
   selectedDesign: string; // address of selected design
 }
 
-const bounties = [
+export const bounties = [
   {
-    published: '2021-08-01',
-    title: 'The Most Tragically Misunderstood Person of Our Time',
+    published: '2023-02-17',
+    title: 'Mr Whitehole Fanart',
     image: {
       src: '/images/episodes/1.jpg',
       type: 'image/jpeg',
     },
-    address: '0x1',
-    description: 'The Most Tragically Misunderstood Person of Our Time',
+    address: 'YU7uQgPaeTvdmBDP97FxPn2kYbaWBtUY5LPJETWX9HA1Mzf',
+    description:
+      'Request for a custom variant with specific traits and background',
     prize: '0.1',
+    token: 'SBY',
     designsRequired: '1',
     selectedDesign: '',
   },
 ];
+
+// needs to be dynamically loaded client side
+const Identicon = dynamic(() => import('@polkadot/react-identicon'), {
+  ssr: false,
+  loading: () => (
+    <div role="status" className="max-w-sm animate-pulse">
+      <div className="h-[60px] w-[60px] rounded-full bg-gray-200 dark:bg-gray-600"></div>
+    </div>
+  ),
+});
 
 function BountyEntry({ bounty }: BountyEntryProps) {
   let date = new Date(bounty.published);
@@ -61,27 +75,32 @@ function BountyEntry({ bounty }: BountyEntryProps) {
       className="py-10 sm:py-12"
     >
       <Container>
-        <div className="flex flex-col items-start">
-          <h2
-            id={`episode-${bounty.address}-title`}
-            className="mt-2 text-lg font-bold text-slate-900"
-          >
-            <Link href={`/${bounty.address}`}>{bounty.title}</Link>
-          </h2>
+        <div className="flex flex-col">
           <FormattedDate
             date={date}
-            className="order-first font-mono text-sm leading-7 text-slate-500"
+            className="font-mono text-sm leading-7 text-slate-500"
           />
-          <p className="mt-1 text-base leading-7 text-slate-700">
-            {bounty.description}
-          </p>
+          <div className="flex items-center space-x-2">
+            <Identicon value={bounty.address} size={60} theme={'polkadot'} />
+            <div className="flex flex-col">
+              <h2
+                id={`episode-${bounty.address}-title`}
+                className="mt-2 text-lg font-bold text-slate-900"
+              >
+                <Link href={`/bounties/${bounty.address}`}>{bounty.title}</Link>
+              </h2>
+              <p className="mt-1 text-base leading-7 text-slate-700">
+                {bounty.description}
+              </p>
+            </div>
+          </div>
           <div className="mt-4 flex items-center gap-4">
             <Link
               href={`/bounties/${bounty.address}`}
               className="flex items-center text-sm font-bold leading-6 text-pink-500 hover:text-pink-700 active:text-pink-900"
             >
               <span className="ml-3" aria-hidden="true">
-                {bounty.prize} eth
+                {bounty.prize} {bounty.token}
               </span>
             </Link>
             <span

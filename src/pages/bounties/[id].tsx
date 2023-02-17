@@ -20,9 +20,11 @@ const bounties = [
 ];
 
 export default function BountyPage() {
-  //get the bounties address from the router
   const router = useRouter();
   const { id } = router.query;
+
+  const bounty = bounties.filter((bounty) => bounty.address === id)[0];
+  console.log(bounty);
 
   return (
     <>
@@ -37,9 +39,7 @@ export default function BountyPage() {
         <Container>
           <h1 className="text-2xl font-bold leading-7 text-slate-900">{id}</h1>
         </Container>
-        <div className="divide-y divide-slate-100 sm:mt-4 lg:mt-8 lg:border-t lg:border-slate-100">
-          {/* EDIT HERE */}
-        </div>
+        <div className="divide-y divide-slate-100 sm:mt-4 lg:mt-8 lg:border-t lg:border-slate-100"></div>
       </div>
     </>
   );
