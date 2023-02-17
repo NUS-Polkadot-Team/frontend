@@ -23,7 +23,7 @@ export default function BountyEntry({ bounty }: BountyEntryProps) {
             className="font-mono text-sm leading-7 text-slate-500"
           />
           <div className="flex items-center space-x-2">
-            <Identicon value={bounty.address} size={60} theme={'polkadot'} />
+            <Identicon value={bounty.address} size={60} />
             <div className="flex flex-col">
               <h2
                 id={`episode-${bounty.address}-title`}

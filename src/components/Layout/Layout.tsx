@@ -142,7 +142,7 @@ export function Layout({ children }: { children?: ReactNode }) {
           </section>
         </div>
       </header>
-      <main className="border-t border-slate-200 lg:relative lg:mb-28 lg:ml-112 lg:border-t-0 xl:ml-120">
+      <main className="border-t border-slate-200 lg:relative lg:mb-28 lg:ml-112 lg:border-t-0">
         <Waveform className="absolute left-0 top-0 h-20 w-full" />
         <div className="relative">{children}</div>
       </main>

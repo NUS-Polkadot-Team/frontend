@@ -1,9 +1,9 @@
 import usePolkadot from '@/hooks/usePolkadot';
 import type { InjectedAccountWithMeta } from '@polkadot/extension-inject/types';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from './Button';
 
-const WalletButton: React.FC = () => {
+const WalletButton = () => {
   const {
     isApiLoading,
     isExtensionLoading,
@@ -12,7 +12,6 @@ const WalletButton: React.FC = () => {
     setup,
     setActiveAccount,
     activeAccount,
-    setSigner,
   } = usePolkadot();
   const [selectedAccount, setSelectedAccount] =
     useState<InjectedAccountWithMeta>();
@@ -26,20 +25,22 @@ const WalletButton: React.FC = () => {
       console.error('API or account not selected');
       return;
     }
-    await setSigner(selectedAccount);
+    setActiveAccount(selectedAccount);
   };
 
-  const handleLogout = () => {
-    api?.disconnect();
+  const handleLogout = async () => {
+    await api?.disconnect();
     setActiveAccount(undefined);
   };
 
+  // set first account as selected account on page load
   useEffect(() => {
     if (api && accounts.length && !selectedAccount) {
       setSelectedAccount(accounts[0]);
     }
   }, [api, accounts]);
 
+  // Waiting for user to allow extension
   if (isExtensionLoading) {
     return (
       <div className="flex">
@@ -55,8 +56,8 @@ const WalletButton: React.FC = () => {
     return <div className="text-sm">Loading...</div>;
   }
 
+  // No API installed
   if (!api) {
-    // No API installed
     return <div className="text-sm">Please install a wallet</div>;
   }
 

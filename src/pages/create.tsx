@@ -1,14 +1,14 @@
-import { useState, type FormEvent, type ChangeEvent } from 'react';
-import Head from 'next/head';
-
 import { Container } from '@/components/Layout/LayoutContainer';
+import useCreateBounty from '@/hooks/useCreateBounty';
+import Head from 'next/head';
+import { useState, type ChangeEvent, type FormEvent } from 'react';
 
 type FormData = {
   title: string;
   image?: File;
   description: string;
   prize: number;
-  designsRequired: number;
+  deadline: string;
 };
 
 export const customInputStyles = {
@@ -25,12 +25,12 @@ function CreateForm() {
     image: undefined,
     description: '',
     prize: 0,
-    designsRequired: 1,
+    deadline: '',
   });
+  const { createBounty } = useCreateBounty();
 
-  const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Handle here
   };
 
   const handleInputChange = (
@@ -111,30 +111,33 @@ function CreateForm() {
         />
       </div>
       <div>
-        <label
-          htmlFor="designsRequired"
-          className={customInputStyles.inputLabel}
-        >
-          Designs Required:
+        <label htmlFor="deadline" className={customInputStyles.inputLabel}>
+          Deadline:
         </label>
         <input
-          type="number"
-          id="designsRequired"
-          name="designsRequired"
-          value={formData.designsRequired}
+          type="date"
+          id="deadline"
+          name="deadline"
+          value={formData.deadline}
           onChange={handleInputChange}
           required
           className={customInputStyles.inputField}
         />
       </div>
-      <button type="submit" className={customInputStyles.submitButton}>
+      <button
+        type="submit"
+        className={customInputStyles.submitButton}
+        onClick={() =>
+          createBounty('Qmde2yQH1VNuDXvAdPFnZnZABSEZwmbSmxkNoBwtazDJUd', 100)
+        }
+      >
         Submit
       </button>
     </form>
   );
 }
 
-export default function create() {
+export default function CreatePage() {
   return (
     <>
       <Head>
