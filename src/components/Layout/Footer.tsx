@@ -8,8 +8,8 @@ export function Footer() {
   return (
     <footer className="bg-slate-50">
       <Container>
-        <div className="py-16">
-          <Logo className="mx-auto h-10 w-auto" />
+        <div className="flex flex-col items-center justify-center py-8">
+          <Logo className="mx-auto h-10 w-full " />
           <nav className="mt-10 text-sm" aria-label="quick links">
             <div className="-my-1 flex justify-center gap-x-6">
               <NavLink href="#features">Features</NavLink>
@@ -33,7 +33,7 @@ export function Footer() {
               </svg>
             </Link>
             <Link
-              href="https://github.com"
+              href="https://github.com/NUS-Polkadot-Team"
               className="group"
               aria-label="TaxPal on GitHub"
             >

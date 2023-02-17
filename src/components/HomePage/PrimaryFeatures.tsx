@@ -8,22 +8,22 @@ const features = [
   {
     title: 'Discovery',
     description: 'Community based discovery and bounties.',
-    image: '/screenshots/payroll.png',
+    image: '/screenshots/Artists.png',
   },
   {
     title: 'Funding',
     description: 'Decentralized funding process.',
-    image: '/screenshots/expenses.png',
+    image: '/screenshots/Bounties.png',
   },
   {
     title: 'Vibrancy',
     description: 'Transparent and Vibrant Art Creation Scene.',
-    image: '/screenshots/vat-returns.png',
+    image: '/screenshots/Create.png',
   },
   {
     title: 'Reputation',
     description: 'Score Engine to build artists reputations.',
-    image: '/screenshots/reporting.png',
+    image: '/screenshots/Submit.png',
   },
 ];
 
@@ -49,22 +49,23 @@ export function PrimaryFeatures() {
     <section
       id="features"
       aria-label="Features for running your books"
-      className="relative overflow-hidden bg-blue-600 pt-20 pb-28 sm:py-32"
+      className="relative overflow-hidden bg-pink-600 pt-20 pb-28 sm:py-32"
     >
       <Image
-        className="absolute top-1/2 left-1/2 max-w-none translate-x-[-44%] translate-y-[-42%]"
+        className="absolute top-1/2 left-1/2 max-w-none translate-x-[-42%] translate-y-[-42%] hue-rotate-90 filter"
         src={'/background-features.jpg'}
         alt="Features"
         width={2245}
         height={1636}
         unoptimized
       />
+
       <Container className="relative">
         <div className="max-w-2xl md:mx-auto md:text-center xl:max-w-none">
           <h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl md:text-5xl">
             Features
           </h2>
-          {/* <p className="mt-6 text-lg tracking-tight text-blue-100">
+          {/* <p className="mt-6 text-lg tracking-tight text-pink-100">
             WE
           </p> */}
         </div>
@@ -92,8 +93,8 @@ export function PrimaryFeatures() {
                           className={clsx(
                             'font-display text-lg [&:not(:focus-visible)]:focus:outline-none',
                             selectedIndex === featureIndex
-                              ? 'text-blue-600 lg:text-white'
-                              : 'text-blue-100 hover:text-white lg:text-white'
+                              ? 'text-pink-600 lg:text-white'
+                              : 'text-pink-100 hover:text-white lg:text-white'
                           )}
                         >
                           <span className="absolute inset-0 rounded-full lg:rounded-r-none lg:rounded-l-xl" />
@@ -105,7 +106,7 @@ export function PrimaryFeatures() {
                           'mt-2 hidden text-sm lg:block',
                           selectedIndex === featureIndex
                             ? 'text-white'
-                            : 'text-blue-100 group-hover:text-white'
+                            : 'text-pink-100 group-hover:text-white'
                         )}
                       >
                         {feature.description}
@@ -123,7 +124,7 @@ export function PrimaryFeatures() {
                         {feature.description}
                       </p>
                     </div>
-                    <div className="mt-10 w-[45rem] overflow-hidden rounded-xl bg-slate-50 shadow-xl shadow-blue-900/20 sm:w-auto lg:mt-0 lg:w-[67.8125rem]">
+                    <div className="mt-10 w-[45rem] overflow-hidden rounded-xl bg-slate-50 shadow-xl shadow-pink-900/20 sm:w-auto lg:mt-0 lg:w-[67.8125rem]">
                       <Image
                         className="w-full"
                         src={feature.image}
