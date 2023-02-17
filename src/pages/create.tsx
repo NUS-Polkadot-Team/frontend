@@ -138,7 +138,7 @@ export default function create() {
   return (
     <>
       <Head>
-        <title>ArtFi - Create</title>
+        <title>BountiFi - Create</title>
         <meta
           name="description"
           content="Building communities of artists, Empowering the creator economy"

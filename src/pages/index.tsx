@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title> ArtFi - Home</title>
+        <title> BountiFi - Home</title>
         <meta
           name="description"
           content="Building communities of artists, Empowering the creator economy"

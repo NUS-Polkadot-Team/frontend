@@ -101,7 +101,7 @@ export default function SubmitPage() {
   return (
     <>
       <Head>
-        <title>ArtFi - Submit</title>
+        <title>BountiFi - Submit</title>
         <meta
           name="description"
           content="Building communities of artists, Empowering the creator economy"

@@ -25,7 +25,7 @@ export default function Home({ bounty }: HomeProps) {
   return (
     <>
       <Head>
-        <title>ArtFi - Bounties</title>
+        <title>BountiFi - Bounties</title>
         <meta
           name="description"
           content="Building communities of artists, Empowering the creator economy"

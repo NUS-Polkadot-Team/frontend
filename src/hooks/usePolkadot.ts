@@ -24,7 +24,7 @@ const usePolkadot = () => {
     const { web3Accounts, web3Enable } = await import(
       '@polkadot/extension-dapp'
     );
-    const extensions = await web3Enable('ArtFi');
+    const extensions = await web3Enable('BountiFi');
     if (extensions.length === 0) {
       return;
     }
