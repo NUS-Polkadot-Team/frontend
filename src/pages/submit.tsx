@@ -66,7 +66,7 @@ function SubmitForm() {
       </div>
       <div>
         <label htmlFor="image" className={customInputStyles.inputLabel}>
-          Upload an image (optional):
+          Upload an image:
         </label>
         <input
           type="file"
@@ -75,6 +75,7 @@ function SubmitForm() {
           accept="image/*"
           onChange={handleFileInputChange}
           className={customInputStyles.inputField}
+          required
         />
       </div>
       <div>

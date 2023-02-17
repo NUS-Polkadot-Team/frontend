@@ -72,7 +72,7 @@ function CreateForm() {
       </div>
       <div>
         <label htmlFor="image" className={customInputStyles.inputLabel}>
-          Image:
+          Image (Optional):
         </label>
         <input
           type="file"
