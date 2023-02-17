@@ -1,11 +1,9 @@
 import { FormattedDate } from '@/components/Layout/FormattedDate';
 import { Container } from '@/components/Layout/LayoutContainer';
+import bounties, { Bounty } from '@/data/bounties';
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
-import usePolkadot from '@/hooks/usePolkadot';
-import { useState } from 'react';
-import useIsDomLoaded from '@/hooks/useIsDomLoaded';
 
 interface BountyEntryProps {
   bounty: Bounty;
@@ -23,39 +21,6 @@ export interface Submission {
   bountyAddress: string; // bounty address of the submission
 }
 
-export interface Bounty {
-  published: string; //date the bounty was published
-  title: string; // title of the bounty
-  image: {
-    src: string;
-    type: string;
-  }; // image used for the bounty
-  address: string; // address of the bounty
-  description: string; // description of the bounty
-  prize: string; // prize in eth of the bounty
-  token: string;
-  designsRequired: string; // number of designs required for the bounty
-  selectedDesign: string; // address of selected design
-}
-
-export const bounties = [
-  {
-    published: '2023-02-17',
-    title: 'Mr Whitehole Fanart',
-    image: {
-      src: '/images/episodes/1.jpg',
-      type: 'image/jpeg',
-    },
-    address: 'YU7uQgPaeTvdmBDP97FxPn2kYbaWBtUY5LPJETWX9HA1Mzf',
-    description:
-      'Request for a custom variant with specific traits and background',
-    prize: '0.1',
-    token: 'SBY',
-    designsRequired: '1',
-    selectedDesign: '',
-  },
-];
-
 // needs to be dynamically loaded client side
 const Identicon = dynamic(() => import('@polkadot/react-identicon'), {
   ssr: false,
@@ -67,8 +32,6 @@ const Identicon = dynamic(() => import('@polkadot/react-identicon'), {
 });
 
 function BountyEntry({ bounty }: BountyEntryProps) {
-  let date = new Date(bounty.published);
-
   return (
     <article
       aria-labelledby={`episode-${bounty.address}-title`}
@@ -77,7 +40,8 @@ function BountyEntry({ bounty }: BountyEntryProps) {
       <Container>
         <div className="flex flex-col">
           <FormattedDate
-            date={date}
+            text="Posted on: "
+            date={new Date(bounty.published)}
             className="font-mono text-sm leading-7 text-slate-500"
           />
           <div className="flex items-center space-x-2">
@@ -92,9 +56,26 @@ function BountyEntry({ bounty }: BountyEntryProps) {
               <p className="mt-1 text-base leading-7 text-slate-700">
                 {bounty.description}
               </p>
+
+              <div className="flex items-center gap-4">
+                <FormattedDate
+                  text="Deadline: "
+                  date={new Date(bounty.deadline)}
+                  className="font-mono text-sm font-bold leading-7 text-slate-700"
+                />
+                <span
+                  aria-hidden="true"
+                  className="text-sm font-bold text-slate-400"
+                >
+                  /
+                </span>
+                <span className="font-mono text-sm font-bold capitalize leading-7 text-slate-700">
+                  Status: {bounty.status}
+                </span>
+              </div>
             </div>
           </div>
-          <div className="mt-4 flex items-center gap-4">
+          <div className="mt-4 flex items-center gap-2">
             <Link
               href={`/bounties/${bounty.address}`}
               className="flex items-center text-sm font-bold leading-6 text-pink-500 hover:text-pink-700 active:text-pink-900"
