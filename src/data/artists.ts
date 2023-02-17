@@ -133,7 +133,6 @@ const artists: {
       },
     ],
   },
-
   {
     name: 'Recommended Artists',
     description: 'Curated for you',

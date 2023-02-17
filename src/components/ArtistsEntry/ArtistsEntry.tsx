@@ -19,8 +19,7 @@ export default function ArtistsEntry({ artist }: ArtistEntryProps) {
     bountiesCompleted,
     joined,
     address,
-  } = artist;
-  console.log(artist);
+  } = artist || {};
 
   const [copied, setCopied] = useState(false);
 
@@ -31,6 +30,10 @@ export default function ArtistsEntry({ artist }: ArtistEntryProps) {
       }, 1000);
     }
   }, [copied]);
+
+  if (!artist) {
+    return null;
+  }
 
   const handleCopyAddress = () => {
     navigator.clipboard.writeText(address);

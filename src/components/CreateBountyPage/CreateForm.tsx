@@ -1,8 +1,8 @@
 import useCreateBounty from '@/hooks/useCreateBounty';
+import ipfsClient from '@/utils/ipfs';
 import { useState, type ChangeEvent, type FormEvent } from 'react';
 import { toast } from 'react-toastify';
-import { FormData, customInputStyles } from '../../pages/create';
-import ipfsClient from 'ipfs-http-client';
+import { customInputStyles, FormData } from '../../pages/create';
 
 const SHIBUYA_DECIMALS = 18;
 export function CreateForm() {
@@ -16,16 +16,14 @@ export function CreateForm() {
   const { createBounty, data, error } = useCreateBounty();
   const [ipfsHash, setIpfsHash] = useState<string>('');
 
-  const ipfs = ipfsClient.create({ url: 'https://ipfs.infura.io:5001/api/v0' });
-
   const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const file = await ipfs.add(Buffer.from(JSON.stringify(formData)));
+    const file = await ipfsClient.add(Buffer.from(JSON.stringify(formData)));
 
     setIpfsHash(file.cid.toString());
 
-    await createBounty(ipfsHash, formData.prize * 10 ** 18);
+    await createBounty(ipfsHash, formData.prize * 10 ** SHIBUYA_DECIMALS);
 
     // await createBounty(
     //   'Qmde2yQH1VNuDXvAdPFnZnZABSEZwmbSmxkNoBwtazDJUd',

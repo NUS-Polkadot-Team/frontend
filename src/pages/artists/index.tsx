@@ -1,9 +1,8 @@
 import Head from 'next/head';
-
 import { Container } from '@/components/Layout/LayoutContainer';
-
 import { ArtistList } from '@/components/ArtistsPage/ArtistList';
 import type { StaticImageData } from 'next/image';
+
 interface ArtistEntryProps {
   artist: Artist;
 }
