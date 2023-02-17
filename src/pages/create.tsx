@@ -2,6 +2,8 @@ import { Container } from '@/components/Layout/LayoutContainer';
 import useCreateBounty from '@/hooks/useCreateBounty';
 import Head from 'next/head';
 import { useState, type ChangeEvent, type FormEvent } from 'react';
+import { toast } from 'react-toastify';
+import BN from 'bn.js';
 
 type FormData = {
   title: string;
@@ -19,6 +21,8 @@ export const customInputStyles = {
     'inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500',
 };
 
+const SHIBUYA_DECIMALS = 18;
+
 function CreateForm() {
   const [formData, setFormData] = useState<FormData>({
     title: '',
@@ -27,11 +31,28 @@ function CreateForm() {
     prize: 0,
     deadline: '',
   });
-  const { createBounty } = useCreateBounty();
+  const { createBounty, data, error } = useCreateBounty();
 
   const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    await createBounty(
+      'Qmde2yQH1VNuDXvAdPFnZnZABSEZwmbSmxkNoBwtazDJUd',
+      // TODO: fix unsafe number conversion
+      formData.prize * 10 ** 18
+    );
+    if (error) {
+      toast.error("Couldn't create bounty, please check if you are logged in.");
+      return;
+    }
+    toast.success(
+      <div>
+        <h3>Successfully created bounty</h3>
+        <span>Address: {data?.toString()}</span>
+      </div>
+    );
   };
+  // toast.success('hello');
 
   const handleInputChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -124,13 +145,7 @@ function CreateForm() {
           className={customInputStyles.inputField}
         />
       </div>
-      <button
-        type="submit"
-        className={customInputStyles.submitButton}
-        onClick={() =>
-          createBounty('Qmde2yQH1VNuDXvAdPFnZnZABSEZwmbSmxkNoBwtazDJUd', 100)
-        }
-      >
+      <button type="submit" className={customInputStyles.submitButton}>
         Submit
       </button>
     </form>

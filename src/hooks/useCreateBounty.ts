@@ -1,47 +1,45 @@
 import { ContractPromise } from '@polkadot/api-contract';
 import type { AnyJson } from '@polkadot/types-codec/types';
-import { useCallback, useEffect, useState } from 'react';
+import type { WeightV2 } from '@polkadot/types/interfaces/runtime';
+import { useEffect, useState } from 'react';
 import abi from './metadata';
 import usePolkadot from './usePolkadot';
-import type { WeightV2 } from '@polkadot/types/interfaces/runtime';
-import result from 'postcss/lib/result';
+import type BN from 'bn.js';
+
+const CONTRACT_ADDRESS = 'YU7uQgPaeTvdmBDP97FxPn2kYbaWBtUY5LPJETWX9HA1Mzf';
 
 const useCreateBounty = () => {
   const { api, activeAccount } = usePolkadot();
   const [contract, setContract] = useState<ContractPromise>();
   const [data, setData] = useState<AnyJson>();
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<unknown>();
+  const [isLoading, setIsLoading] = useState(false);
 
   const initContract = () => {
     if (api) {
-      const contract = new ContractPromise(
-        api,
-        abi,
-        'YU7uQgPaeTvdmBDP97FxPn2kYbaWBtUY5LPJETWX9HA1Mzf'
-      );
+      const contract = new ContractPromise(api, abi, CONTRACT_ADDRESS);
       setContract(contract);
     }
   };
 
   const createBounty = async (contentIpfsHash: string, amount: number) => {
     if (!contract || !activeAccount || !api) {
+      setError("Invalid contract or account or api, can't create bounty");
       return;
     }
-    setLoading(true);
+    setIsLoading(true);
     const { web3FromSource } = await import('@polkadot/extension-dapp');
 
     const injector = await web3FromSource(activeAccount.meta.source);
-    const { gasRequired, storageDeposit, result } =
-      await contract.query.createBounty(
-        activeAccount.address,
-        {
-          storageDepositLimit: null,
-          gasLimit: -1,
-        },
-        contentIpfsHash,
-        amount
-      );
+    const { gasRequired, storageDeposit } = await contract.query.createBounty(
+      activeAccount.address,
+      {
+        storageDepositLimit: null,
+        gasLimit: -1,
+      },
+      contentIpfsHash,
+      amount
+    );
     try {
       const result = await contract.tx
         .createBounty(
@@ -58,17 +56,17 @@ const useCreateBounty = () => {
         .signAndSend(activeAccount.address, { signer: injector.signer });
       setData(result.toHuman());
     } catch (err) {
-      console.error('create bounty', err);
+      console.error('[create bounty]', err);
       setError(err);
     }
-    setLoading(false);
+    setIsLoading(false);
   };
 
   useEffect(() => {
     initContract();
   }, [api]);
 
-  return { data, createBounty, loading, error };
+  return { data, createBounty, loading: isLoading, error };
 };
 
 export default useCreateBounty;
