@@ -1,5 +1,9 @@
 # BountiFi
 
+Bounty system for artists and art enthusiasts.
+
+## Tech Stack
+
 Built with
 - tailwindcss
 - Next.JS
